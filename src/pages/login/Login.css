@@ -1,6 +1,11 @@
+.header {
+    text-align: center;
+    margin-top: 50px;
+}
+
 .card {
     width: 25%;
-    margin: 10% auto auto auto;
+    margin: auto auto auto auto;
 }
 
 .form {
