@@ -1,14 +1,26 @@
 import './Header.css';
+import Logo from '../../images/Logo.png'
+import {Button} from "@mui/material";
 
 function Header() {
     return (
-       <Header>
-       <div class='center'>
-       <span class='logo'>
-       <h2>Hermess</h2>
-       </span>
-       </div>
-       </Header>
+      <header>
+        <div class='center'>
+            <span class='logo'>
+                <img src={Logo}/>
+                <Button
+                       className="BtnRegistrar"
+                       variant="contained"
+                       margin={"normal"}
+                       color={"error"}> Registrar</Button>
+                <Button
+                       className="BtnLogin"
+                       variant="contained"
+                       margin={"normal"}
+                       color={"error"}>Login</Button>
+            </span>
+        </div>
+      </header>
     );
 }
 

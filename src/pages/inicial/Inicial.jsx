@@ -1,5 +1,5 @@
 import './Inicial.css';
-import Header from '../../componentes/header/Header.jsx'
+import Header from '../../componentes/header/Header'
 
 function Inicial() {
     return (
