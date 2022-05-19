@@ -1,7 +1,18 @@
+.center button{
+    display: inline-flexbox;
+    float: right;
+    text-align: left;
+    margin-top:30px;
+    margin-right: 20px;
+}
+.center{
+    background-color: white;
+}
 .BtnRegistrar{
- margin:10 10 20px;
+background: green;
+    
 }
 
 .BtnLogin{
-margin:10 10 20px;
+align-items: right;
 }

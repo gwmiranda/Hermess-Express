@@ -5,19 +5,19 @@ import {Button} from "@mui/material";
 function Header() {
     return (
       <header>
-        <div class='center'>
-            <span class='logo'>
+        <div className='center'>
+            <span className='logo'>
                 <img src={Logo}/>
                 <Button
                        className="BtnRegistrar"
                        variant="contained"
                        margin={"normal"}
-                       color={"error"}> Registrar</Button>
+                       > Registrar</Button>
                 <Button
                        className="BtnLogin"
                        variant="contained"
                        margin={"normal"}
-                       color={"error"}>Login</Button>
+                       >Login</Button>
             </span>
         </div>
       </header>
