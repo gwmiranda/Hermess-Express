@@ -20,7 +20,7 @@ function Header() {
                        >Login</Button>
             </span>
         </div>
-        <div classname='texto'>
+        <div className='texto'>
                 <h1>Para quem almeja o sucesso!</h1>
                     <h2>Nós entregamos.</h2>
         </div>

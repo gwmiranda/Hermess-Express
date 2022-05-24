@@ -1,19 +1,37 @@
 import './Login.css';
 import {Button, Card, FormControl, TextField} from "@mui/material";
 import axios from "../../axios";
+import {useState} from "react";
 
-const loginRequest = async (body) => {
-    return axios.post('/login', body)
-        .then((res) => {
+function Login() {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    let token = '';
+
+    // async function autenticarCsrf() {
+    //     axios.get('/sanctum/csrf-cookie').then(response => {
+    //         console.log(response)
+    //         loginRequest()
+    //     });
+    // }
+
+    async function loginRequest() {
+        axios.post('auth/login',{
+            email: email,
+            password : password
+
+        }).then((res) => {
+            token = res.data;
             console.log(res.data)
-        })
-        .catch((error) => {
+
+        }).catch((error) => {
             console.log(error.response)
             alert(error)
         })
-}
+    }
 
-function Login() {
     return (
         <div>
             <header className={"header"}>
@@ -23,13 +41,19 @@ function Login() {
                 <form
                     className="form"
                     onSubmit={event => {
-                        console.log("Login")
+                        console.log("Username " + email + " - Senha " + password)
+                        loginRequest()
                         event.preventDefault();
                     }}
                 >
                     <h2>Login</h2>
                     <FormControl className="formComponent">
                         <TextField
+                            value={email}
+                            onChange={event => {
+                                setEmail(event.target.value)
+                            }}
+                            name="usuario"
                             id="usuario"
                             label="Usuário"
                             variant="outlined"
@@ -38,6 +62,11 @@ function Login() {
                             margin={"normal"}
                         />
                         <TextField
+                            value={password}
+                            onChange={event => {
+                                setPassword(event.target.value)
+                            }}
+                            name="senha"
                             id="Senha"
                             type="password"
                             label="Senha"
@@ -59,6 +88,7 @@ function Login() {
                             variant="contained"
                             margin={"normal"}
                             color={"error"}
+                            onClick={onsubmit}
                         >Registrar</Button>
                     </FormControl>
                 </form>
