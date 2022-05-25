@@ -10,13 +10,6 @@ function Login() {
 
     let token = '';
 
-    // async function autenticarCsrf() {
-    //     axios.get('/sanctum/csrf-cookie').then(response => {
-    //         console.log(response)
-    //         loginRequest()
-    //     });
-    // }
-
     async function loginRequest() {
         axios.post('auth/login',{
             email: email,
@@ -41,9 +34,7 @@ function Login() {
                 <form
                     className="form"
                     onSubmit={event => {
-                        console.log("Username " + email + " - Senha " + password)
                         loginRequest()
-                        event.preventDefault();
                     }}
                 >
                     <h2>Login</h2>
