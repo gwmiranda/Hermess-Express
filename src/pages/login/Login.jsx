@@ -44,9 +44,9 @@ function Login() {
                             onChange={event => {
                                 setEmail(event.target.value)
                             }}
-                            name="usuario"
-                            id="usuario"
-                            label="UsuÃ¡rio"
+                            name="email"
+                            id="email"
+                            label="Email"
                             variant="outlined"
                             fullWidth
                             required

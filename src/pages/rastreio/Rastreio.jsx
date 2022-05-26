@@ -1,5 +1,4 @@
 import './Rastreio.css';
-import {Button, Card, Input, TextField} from "@mui/material";
 
 function Rastreio() {
     return (
