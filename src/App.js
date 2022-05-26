@@ -1,13 +1,11 @@
 import './App.css';
-import Header from './componentes/header/Header';
-import MinhaConta from './pages/minhaConta/MinhaConta';
+import CadastroUsuario from "./pages/encomendasEnviar/CadastroUsuario";
 
 
 function App() {
     return (
         <div>
-            <Header/>
-            <MinhaConta/>
+            <CadastroUsuario/>
         </div>
     );
 }
