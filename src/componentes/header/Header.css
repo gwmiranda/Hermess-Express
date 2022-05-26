@@ -16,3 +16,7 @@ background: green;
 .BtnLogin{
 align-items: right;
 }
+
+.BtnEmpresa{
+    background-color:darkred;
+}

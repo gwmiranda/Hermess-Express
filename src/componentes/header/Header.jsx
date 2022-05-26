@@ -18,6 +18,21 @@ function Header() {
                        variant="contained"
                        margin={"normal"}
                        >Login</Button>
+                       <Button
+                       className="BtnFrota"
+                       variant="contained"
+                       margin={"normal"}
+                       > Minha Frota</Button>
+                       <Button
+                       className="BtnEmpresa"
+                       variant="contained"
+                       margin={"normal"}
+                       > Minha Empresa</Button>
+                       <Button
+                       className="BtnConta"
+                       variant="contained"
+                       margin={"normal"}
+                       > Minha Conta</Button>
             </span>
         </div>
       </header>

@@ -1,0 +1,12 @@
+.container button{
+    background-color: lightblue;
+    width: 100px;
+    align-items: center;
+    float: center;
+    
+    
+}
+.titulo{
+    font-size: 25px;
+    text-align-last: center;
+}
