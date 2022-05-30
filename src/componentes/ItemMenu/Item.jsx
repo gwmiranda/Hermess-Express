@@ -6,7 +6,6 @@ import {
   } from "./styles";
 
 const SubMenu = (props) => {
-  console.log(props)
   return (
     <>
       <SideBarLink to={ props.url }>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import SubMenu from '../ItemMenu/Item';
 
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
@@ -42,34 +43,36 @@ const Menu = () => {
         </NavIcon>
         <Logo>HermesExpress</Logo>
         <Buttons>
-          <Button
-            href="/Rastreio"
-            style={{ 
-              fontSize: 25,
-              background: '#fff',
-              textTransform: 'capitalize',
-              padding: 7,
-              borderRadius: 20,
-              marginLeft: 15,
-              marginRight: 15,
-            }}
-          >
-            Acompanhar Rastreio
-          </Button>
-          <Button
-            href="/Simulacao"
-            style={{ 
-              fontSize: 25,
-              background: '#fff',
-              textTransform: 'capitalize',
-              padding: 7,
-              borderRadius: 20,
-              marginLeft: 15,
-              marginRight: 15,
-            }}
-          >
-            Simulação
-          </Button>
+          <Link to="/Rastreio">
+            <Button
+              style={{ 
+                fontSize: 25,
+                background: '#fff',
+                textTransform: 'capitalize',
+                padding: 7,
+                borderRadius: 20,
+                marginLeft: 15,
+                marginRight: 15,
+              }}
+            >
+              Acompanhar Rastreio
+            </Button>
+          </Link>
+          <Link to="/Simulacao">
+            <Button
+              style={{ 
+                fontSize: 25,
+                background: '#fff',
+                textTransform: 'capitalize',
+                padding: 7,
+                borderRadius: 20,
+                marginLeft: 15,
+                marginRight: 15,
+              }}
+            >
+              Simulação
+            </Button>
+          </Link>
         </Buttons>
       </Nav>
 
