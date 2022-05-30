@@ -1,6 +1,6 @@
-import './Login.css';
+import '../../../pages/login/Login.css';
 import {Button, Card, FormControl, TextField} from "@mui/material";
-import axios from "../../axios";
+import axios from "../../../axios";
 
 const loginRequest = async (body) => {
     return axios.post('/login', body)
@@ -24,6 +24,7 @@ function Login() {
                     className="form"
                     onSubmit={event => {
                         console.log("Login")
+                        loginRequest()
                         event.preventDefault();
                     }}
                 >

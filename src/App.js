@@ -13,6 +13,7 @@ import Veiculos from './pages/veiculos/Veiculos';
 import Rastreio from './pages/rastreio/Rastreio';
 import Simulacao from './pages/simulacao/Simulacao';
 import DataContext, { data } from './data/DataContext';
+import Login from "./components/formularios/login/Login";
 
 function App() {
 
