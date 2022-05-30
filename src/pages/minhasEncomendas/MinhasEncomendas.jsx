@@ -2,7 +2,9 @@ import './MinhasEncomendas.css';
 
 function MinhasEncomendas() {
     return (
-        <p>Tela MinhasEncomendas</p>
+        <div className='Teste'>
+            <h1>Minhas Encomendas</h1>
+        </div>
     );
 }
 

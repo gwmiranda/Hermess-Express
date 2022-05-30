@@ -2,7 +2,9 @@ import './MinhaConta.css';
 
 function MinhaConta() {
     return (
-        <p>Tela MinhaConta</p>
+        <div className='Teste'>
+            <h1>Minha Conta</h1>
+        </div>
     );
 }
 
