@@ -43,24 +43,23 @@ function Usuario() {
                 }}
             >
                 <h2>Login</h2>
-                <TextField
-                    value={formData.nome}
-                    onChange={e => handleChange(e)}
-                    id="nome"
-                    label="Nome"
-                    margin={"normal"}
-                    fullWidth
-                    InputLabelProps={{ 
-                        shrink: true,
-                        style: {
-                            fontSize: "1.4rem"
-                        }
-                    }}
-                    InputProps={{
-                        style: {fontSize: '1.3rem'},
-                    }}
-                    required
-                />
+                    <TextField
+                        value={formData.nome}
+                        onChange={e => handleChange(e)}
+                        id="nome"
+                        label="Nome"
+                        margin={"normal"}
+                        fullWidth
+                        InputLabelProps={{ 
+                            shrink: true,
+                            style: {
+                                fontSize: "1.5rem"
+                            }
+                        }}
+                        InputProps={{
+                            style: {fontSize: '1.3rem'},
+                        }}
+                    />
                 <Grid3_1>
                     <TextField
                         value={formData.email}
@@ -72,13 +71,12 @@ function Usuario() {
                         InputLabelProps={{ 
                             shrink: true,
                             style: {
-                                fontSize: "1.4rem"
+                                fontSize: "1.5rem"
                             }
                         }}
                         InputProps={{
                             style: {fontSize: '1.3rem'},
                         }}
-                        required
                     />
                     <TextField
                         value={formData.cpf}
@@ -91,13 +89,12 @@ function Usuario() {
                         InputLabelProps={{ 
                             shrink: true,
                             style: {
-                                fontSize: "1.4rem"
+                                fontSize: "1.5rem"
                             }
                         }}
                         InputProps={{
                             style: {fontSize: '1.3rem'},
                         }}
-                        required
                     />
                 </Grid3_1>
                 <Grid2>
@@ -112,13 +109,12 @@ function Usuario() {
                         InputLabelProps={{ 
                             shrink: true,
                             style: {
-                                fontSize: "1.4rem"
+                                fontSize: "1.5rem"
                             }
                         }}
                         InputProps={{
                             style: {fontSize: '1.3rem'},
                         }}
-                        required
                     />
                     <TextField
                         value={formData.contato}
@@ -131,13 +127,12 @@ function Usuario() {
                         InputLabelProps={{ 
                             shrink: true,
                             style: {
-                                fontSize: "1.4rem"
+                                fontSize: "1.5rem"
                             }
                         }}
                         InputProps={{
                             style: {fontSize: '1.3rem'},
                         }}
-                        required
                     />
                 </Grid2>
                 <Grid2>
@@ -152,13 +147,12 @@ function Usuario() {
                         InputLabelProps={{ 
                             shrink: true,
                             style: {
-                                fontSize: "1.4rem"
+                                fontSize: "1.5rem"
                             }
                         }}
                         InputProps={{
                             style: {fontSize: '1.3rem'},
                         }}
-                        required
                     />
                     <TextField
                         value={formData.confirmarSenha}
@@ -171,13 +165,12 @@ function Usuario() {
                         InputLabelProps={{ 
                             shrink: true,
                             style: {
-                                fontSize: "1.4rem"
+                                fontSize: "1.5rem"
                             }
                         }}
                         InputProps={{
                             style: {fontSize: '1.3rem'},
                         }}
-                        required
                     />
                 </Grid2>
                     <Button
