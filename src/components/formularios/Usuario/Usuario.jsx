@@ -11,43 +11,62 @@ import {
     Grid2,
     Grid3,
     Grid3_1,
-  } from "./styles";
-import { fontSize } from "@mui/system";
+} from "./styles";
 
 function Usuario() {
 
-    const [nome, setNome] = useState("");
-    const [cpf, setCpf] = useState("");
-    const [nascimento, setNascimento] = useState("");
-    const [email, setEmail] = useState("");
-    const [contato, setContato] = useState("");
-    const [senha, setSenha] = useState("");
-    const [confirmarSenha, setConfirmarSenha] = useState("");
+    const [formData, setFormData] = useState({
+        nome: "",
+        cpf: "",
+        nascimento: "",
+        email: "",
+        contato: "",
+        senha: "",
+        confirmarSenha: "",
+    });
 
+    function handleChange(e) {
+        const { id, value } = e.target;
+        setFormData({
+            ...formData,
+            [id]: value
+        });
+    }
 
     return (
         <>
             <form
                 className="form"
-                onSubmit={event => {
-                    console.log(nome)
-                    console.log(cpf)
-                    console.log(nascimento)
-                    console.log(email)
-                    console.log(contato)
-                    console.log(senha)
-                    event.preventDefault()
+                onSubmit={e => {
+                    console.log(formData)
+                    e.preventDefault();
                 }}
             >
                 <h2>Login</h2>
+                <TextField
+                    value={formData.nome}
+                    onChange={e => handleChange(e)}
+                    id="nome"
+                    label="Nome"
+                    margin={"normal"}
+                    fullWidth
+                    InputLabelProps={{ 
+                        shrink: true,
+                        style: {
+                            fontSize: "1.4rem"
+                        }
+                    }}
+                    InputProps={{
+                        style: {fontSize: '1.3rem'},
+                    }}
+                    required
+                />
                 <Grid3_1>
                     <TextField
-                        value={nome}
-                        onChange={event => {
-                            setNome(event.target.value)
-                        }}
-                        id="nome"
-                        label="Nome"
+                        value={formData.email}
+                        onChange={e => handleChange(e)}
+                        id="email"
+                        label="Email"
                         margin={"normal"}
                         fullWidth
                         InputLabelProps={{ 
@@ -62,10 +81,8 @@ function Usuario() {
                         required
                     />
                     <TextField
-                        value={cpf}
-                        onChange={event => {
-                            setCpf(event.target.value)
-                        }}
+                        value={formData.cpf}
+                        onChange={e => handleChange(e)}
                         id="cpf"
                         label="Cpf"
                         type={"number"}
@@ -83,32 +100,10 @@ function Usuario() {
                         required
                     />
                 </Grid3_1>
-                <TextField
-                    value={email}
-                    onChange={event => {
-                        setEmail(event.target.value)
-                    }}
-                    id="email"
-                    label="Email"
-                    margin={"normal"}
-                    fullWidth
-                    InputLabelProps={{ 
-                        shrink: true,
-                        style: {
-                            fontSize: "1.4rem"
-                        }
-                    }}
-                    InputProps={{
-                        style: {fontSize: '1.3rem'},
-                    }}
-                    required
-                />
                 <Grid2>
                     <TextField
-                        value={nascimento}
-                        onChange={event => {
-                            setNascimento(event.target.value)
-                        }}
+                        value={formData.nascimento}
+                        onChange={e => handleChange(e)}
                         id="nascimento"
                         label="Data de Nascimento"
                         type={"date"}
@@ -126,10 +121,8 @@ function Usuario() {
                         required
                     />
                     <TextField
-                        value={contato}
-                        onChange={event => {
-                            setContato(event.target.value)
-                        }}
+                        value={formData.contato}
+                        onChange={e => handleChange(e)}
                         id="contato"
                         label="Contato"
                         type={"number"}
@@ -149,11 +142,9 @@ function Usuario() {
                 </Grid2>
                 <Grid2>
                     <TextField
-                        value={senha}
-                        onChange={event => {
-                            setSenha(event.target.value)
-                        }}
-                        id="Senha"
+                        value={formData.senha}
+                        onChange={e => handleChange(e)}
+                        id="senha"
                         type="password"
                         label="Senha"
                         margin={"normal"}
@@ -170,11 +161,9 @@ function Usuario() {
                         required
                     />
                     <TextField
-                        value={confirmarSenha}
-                        onChange={event => {
-                            setSenha(event.target.value)
-                        }}
-                        id="ConfirmarSenha"
+                        value={formData.confirmarSenha}
+                        onChange={e => handleChange(e)}
+                        id="confirmarSenha"
                         type="password"
                         label="Confirmar Senha"
                         margin={"normal"}
