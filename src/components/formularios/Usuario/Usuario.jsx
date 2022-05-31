@@ -1,5 +1,6 @@
 import {Button, Card, FormControl, TextField} from "@mui/material";
 import {useState} from "react";
+import {Box} from "@material-ui/core";
 
 function Usuario() {
 
@@ -27,7 +28,7 @@ function Usuario() {
                     }}
                 >
                     <h2>Login</h2>
-                    <FormControl className="formComponent">
+                    <Box className="formComponent">
                         <TextField
                             value={nome}
                             onChange={event => {
@@ -37,9 +38,9 @@ function Usuario() {
                             id="nome"
                             label="Nome"
                             variant="outlined"
-                            fullWidth
                             required
                             margin={"normal"}
+
                         />
                         <TextField
                             value={cpf}
@@ -51,7 +52,6 @@ function Usuario() {
                             label="Cpf"
                             type={"number"}
                             variant="outlined"
-                            fullWidth
                             required
                             margin={"normal"}
                         />
@@ -65,7 +65,6 @@ function Usuario() {
                             label="Data de Nascimento"
                             type={"date"}
                             variant="outlined"
-                            fullWidth
                             required
                             margin={"normal"}
                         />
@@ -78,7 +77,6 @@ function Usuario() {
                             id="email"
                             label="Email"
                             variant="outlined"
-                            fullWidth
                             required
                             margin={"normal"}
                         />
@@ -92,7 +90,6 @@ function Usuario() {
                             label="Contato"
                             type={"number"}
                             variant="outlined"
-                            fullWidth
                             required
                             margin={"normal"}
                         />
@@ -106,7 +103,6 @@ function Usuario() {
                             type="password"
                             label="Senha"
                             variant="outlined"
-                            fullWidth
                             required
                             margin={"normal"}
                         />
@@ -116,7 +112,7 @@ function Usuario() {
                             onClick={onsubmit}
                             margin={"normal"}
                         >Salvar</Button>
-                    </FormControl>
+                    </Box>
                 </form>
             </Card>
         </div>
