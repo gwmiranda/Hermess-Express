@@ -22,11 +22,11 @@ function MinhaConta() {
 
     return (
         <div className='Teste'>
-            <h1>Minha Conta - { state.nome }</h1>
+            {/* <h1>Minha Conta - { state.nome }</h1>
             <div>
                 <button onClick={() => setMiranda()}>Miranda</button>
                 <button onClick={() => setSenna()}>Senna</button>
-            </div>
+            </div> */}
             <Usuario/>
         </div>
     );
