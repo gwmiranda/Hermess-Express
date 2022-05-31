@@ -1,7 +1,6 @@
-import './MinhaConta.css';
-
 import { useContext } from 'react';
 import DataContext from '../../data/DataContext';
+import Usuario from "../../components/formularios/Usuario/Usuario";
 
 function MinhaConta() {
 
@@ -28,6 +27,7 @@ function MinhaConta() {
                 <button onClick={() => setMiranda()}>Miranda</button>
                 <button onClick={() => setSenna()}>Senna</button>
             </div>
+            <Usuario/>
         </div>
     );
 }
