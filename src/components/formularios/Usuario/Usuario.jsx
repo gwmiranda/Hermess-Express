@@ -2,47 +2,40 @@ import {useState} from "react";
 
 import {
     Button, 
-    FormControl,
-    TextField
+    TextField,
+    InputAdornment,
 } from "@mui/material";
-import {Box} from "@material-ui/core";
+
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 import { 
     Grid2,
     Grid3,
     Grid3_1,
+    Form,
+    FormComponents,
+    Buttons,
+    TitleModal
 } from "./styles";
 
-function Usuario() {
+const Usuario = (props) => {
 
-    const [formData, setFormData] = useState({
-        nome: "",
-        cpf: "",
-        nascimento: "",
-        email: "",
-        contato: "",
-        senha: "",
-        confirmarSenha: "",
-    });
+    const [formData, setFormData] = useState(props.state);
 
     function handleChange(e) {
         const { id, value } = e.target;
         setFormData({
-            ...formData,
-            [id]: value
+            ...formData, [id]: value
         });
     }
 
     return (
         <>
-            <form
-                className="form"
-                onSubmit={e => {
-                    console.log(formData)
-                    e.preventDefault();
-                }}
+            <Form
+                onSubmit={(e) => props.onSubmit(e, formData)}
             >
-                <h2>Login</h2>
+                <TitleModal>{ props.titulo }</TitleModal>
+                <FormComponents>
                     <TextField
                         value={formData.nome}
                         onChange={e => handleChange(e)}
@@ -60,128 +53,137 @@ function Usuario() {
                             style: {fontSize: '1.3rem'},
                         }}
                     />
-                <Grid3_1>
-                    <TextField
-                        value={formData.email}
-                        onChange={e => handleChange(e)}
-                        id="email"
-                        label="Email"
+                    <Grid3_1>
+                        <TextField
+                            value={formData.email}
+                            onChange={e => handleChange(e)}
+                            id="email"
+                            label="Email"
+                            margin={"normal"}
+                            fullWidth
+                            InputLabelProps={{ 
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                        <TextField
+                            value={formData.cpf}
+                            onChange={e => handleChange(e)}
+                            id="cpf"
+                            label="Cpf"
+                            type={"number"}
+                            margin={"normal"}
+                            fullWidth
+                            InputLabelProps={{ 
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                    </Grid3_1>
+                    <Grid2>
+                        <TextField
+                            value={formData.nascimento}
+                            onChange={e => handleChange(e)}
+                            id="nascimento"
+                            label="Data de Nascimento"
+                            type={"date"}
+                            margin={"normal"}
+                            fullWidth
+                            InputLabelProps={{ 
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                                endAdornment: <InputAdornment position="end"><CalendarTodayIcon /></InputAdornment>,
+                            }}
+                        />
+                        <TextField
+                            value={formData.contato}
+                            onChange={e => handleChange(e)}
+                            id="contato"
+                            label="Contato"
+                            type={"number"}
+                            margin={"normal"}
+                            fullWidth
+                            InputLabelProps={{ 
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                    </Grid2>
+                    <Grid2>
+                        <TextField
+                            value={formData.senha}
+                            onChange={e => handleChange(e)}
+                            id="senha"
+                            type="password"
+                            label="Senha"
+                            margin={"normal"}
+                            fullWidth
+                            InputLabelProps={{ 
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                        <TextField
+                            value={formData.confirmarSenha}
+                            onChange={e => handleChange(e)}
+                            id="confirmarSenha"
+                            type="password"
+                            label="Confirmar Senha"
+                            margin={"normal"}
+                            fullWidth
+                            InputLabelProps={{ 
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                    </Grid2>
+                </FormComponents>
+                <Buttons>
+                    <Button
+                        variant="contained"
+                        type={"submit"}
+                        onClick={() => props.close()}
                         margin={"normal"}
-                        fullWidth
-                        InputLabelProps={{ 
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                    <TextField
-                        value={formData.cpf}
-                        onChange={e => handleChange(e)}
-                        id="cpf"
-                        label="Cpf"
-                        type={"number"}
-                        margin={"normal"}
-                        fullWidth
-                        InputLabelProps={{ 
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                </Grid3_1>
-                <Grid2>
-                    <TextField
-                        value={formData.nascimento}
-                        onChange={e => handleChange(e)}
-                        id="nascimento"
-                        label="Data de Nascimento"
-                        type={"date"}
-                        margin={"normal"}
-                        fullWidth
-                        InputLabelProps={{ 
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                    <TextField
-                        value={formData.contato}
-                        onChange={e => handleChange(e)}
-                        id="contato"
-                        label="Contato"
-                        type={"number"}
-                        margin={"normal"}
-                        fullWidth
-                        InputLabelProps={{ 
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                </Grid2>
-                <Grid2>
-                    <TextField
-                        value={formData.senha}
-                        onChange={e => handleChange(e)}
-                        id="senha"
-                        type="password"
-                        label="Senha"
-                        margin={"normal"}
-                        fullWidth
-                        InputLabelProps={{ 
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                    <TextField
-                        value={formData.confirmarSenha}
-                        onChange={e => handleChange(e)}
-                        id="confirmarSenha"
-                        type="password"
-                        label="Confirmar Senha"
-                        margin={"normal"}
-                        fullWidth
-                        InputLabelProps={{ 
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                </Grid2>
+                        style={{backgroundColor: "red"}}
+                    >Cancelar</Button>
                     <Button
                         variant="contained"
                         type={"submit"}
                         onClick={onsubmit}
                         margin={"normal"}
-                    >
-                        Salvar
-                    </Button>
-            </form>
+                    >{ props.botao }</Button>
+                </Buttons>
+            </Form>
         </>
     );
 }
