@@ -10,17 +10,24 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 import { 
     Grid2,
-    Grid3,
-    Grid3_1,
+    Grid21,
     Form,
     FormComponents,
     Buttons,
     TitleModal
 } from "./styles";
 
-const Usuario = (props) => {
+const CadastrarUsuario = (props) => {
 
-    const [formData, setFormData] = useState(props.state);
+    const [formData, setFormData] = useState({
+        nome: '',
+        cpf: '',
+        nascimento: '',
+        email: '',
+        contato: '',
+        senha: '',
+        confirmarSenha: '',
+    });
 
     function handleChange(e) {
         const { id, value } = e.target;
@@ -34,7 +41,7 @@ const Usuario = (props) => {
             <Form
                 onSubmit={(e) => props.onSubmit(e, formData)}
             >
-                <TitleModal>{ props.titulo }</TitleModal>
+                <TitleModal>Cadastrar Usuário</TitleModal>
                 <FormComponents>
                     <TextField
                         value={formData.nome}
@@ -53,7 +60,7 @@ const Usuario = (props) => {
                             style: {fontSize: '1.3rem'},
                         }}
                     />
-                    <Grid3_1>
+                    <Grid21>
                         <TextField
                             value={formData.email}
                             onChange={e => handleChange(e)}
@@ -89,7 +96,7 @@ const Usuario = (props) => {
                                 style: {fontSize: '1.3rem'},
                             }}
                         />
-                    </Grid3_1>
+                    </Grid21>
                     <Grid2>
                         <TextField
                             value={formData.nascimento}
@@ -181,11 +188,11 @@ const Usuario = (props) => {
                         type={"submit"}
                         onClick={onsubmit}
                         margin={"normal"}
-                    >{ props.botao }</Button>
+                    >Cadastrar</Button>
                 </Buttons>
             </Form>
         </>
     );
 }
 
-export default Usuario;
+export default CadastrarUsuario;

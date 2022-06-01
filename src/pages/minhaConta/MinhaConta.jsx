@@ -1,6 +1,9 @@
 import { useContext, useState } from 'react';
 import DataContext from '../../data/DataContext';
-import Usuario from "../../components/formularios/Usuario/Usuario";
+
+import CadastrarUsuario from '../../components/formularios/usuario/CadastrarUsuario';
+import EditarUsuario from '../../components/formularios/usuario/EditarUsuario';
+import EditarSenhaUsuario from '../../components/formularios/usuario/EditarSenhaUsuario';
 
 import {
     Button, 
@@ -25,28 +28,28 @@ function MinhaConta() {
         })
     }
 
-    const initialValue = {
-        nome: '',
-        cpf: '',
-        nascimento: '',
-        email: '',
-        contato: '',
-        senha: '',
-        confirmarSenha: '',
+    const stateExample = {
+        nome: 'Gabriel Senna',
+        cpf: '10310310325',
+        nascimento: '2000-09-26',
+        email: 'senna@gmail.com',
+        contato: '41988887777',
     }
 
-    const [userState, setUserState] = useState(initialValue);
-    // const [userUpdateState, setUserUpdateState] = useState();
+    const [userState, setUserState] = useState();
 
     const [openRegister, setOpenRegister] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
+    const [openSenhaEdit, setOpenSenhaEdit] = useState(false);
 
     const handleOpenRegister = () => setOpenRegister(true);
     const handleOpenEdit = () => setOpenEdit(true);
+    const handleOpenSenhaEdit = () => setOpenSenhaEdit(true);
 
     const handleClose = () => {
         setOpenRegister(false)
         setOpenEdit(false)
+        setOpenSenhaEdit(false)
     };
 
     const onSumbit = (e, formSate) => {
@@ -65,17 +68,13 @@ function MinhaConta() {
             <div>
                 <Button onClick={handleOpenRegister}>Open Modal Register</Button>
                 <Button onClick={handleOpenEdit}>Open Modal Edit</Button>
+                <Button onClick={handleOpenSenhaEdit}>Open Modal Senha Edit</Button>
 
                 <Modal
                     open={openRegister}
                     onClose={handleClose}
-                    aria-labelledby="modal-title" 
-                    aria-describedby="modal-description"
                 > 
-                    <Usuario
-                        titulo = "Cadastrar Usuário"
-                        botao = "Salvar"
-                        state = { initialValue }
+                    <CadastrarUsuario
                         close = { handleClose }
                         onSubmit = { onSumbit }
                     /> 
@@ -84,13 +83,19 @@ function MinhaConta() {
                 <Modal
                     open={openEdit}
                     onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
                 > 
-                    <Usuario
-                        titulo = "Editar Usuário"
-                        botao = "Editar"
-                        state = { userState }
+                    <EditarUsuario
+                        state = { stateExample }
+                        close = { handleClose }
+                        onSubmit = { onSumbit }
+                    /> 
+                </Modal>
+
+                <Modal
+                    open={openSenhaEdit}
+                    onClose={handleClose}
+                > 
+                    <EditarSenhaUsuario
                         close = { handleClose }
                         onSubmit = { onSumbit }
                     /> 

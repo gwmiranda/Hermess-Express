@@ -11,7 +11,7 @@ export const Grid3 = styled.nav`
     gap: 20px;
 `
 
-export const Grid3_1 = styled.nav`
+export const Grid21 = styled.nav`
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 20px;
