@@ -1,6 +1,7 @@
 import './Login.css';
 import {Button, Card, FormControl, TextField} from "@mui/material";
 import axios from "../../axios";
+import HeaderLogin from "../../components/header/HeaderLogin";
 
 const loginRequest = async (body) => {
     return axios.post('/login', body)
@@ -16,9 +17,7 @@ const loginRequest = async (body) => {
 function Login() {
     return (
         <div>
-            <header className={"header"}>
-                <h1>Hermes Express</h1>
-            </header>
+           <HeaderLogin/>
             <Card className= "card">
                 <form
                     className="form"

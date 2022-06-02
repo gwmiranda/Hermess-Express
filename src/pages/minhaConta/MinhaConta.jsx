@@ -1,3 +1,4 @@
+import "./MinhaConta.css"
 import { useContext, useState } from 'react';
 import DataContext from '../../data/DataContext';
 
@@ -59,16 +60,18 @@ function MinhaConta() {
     }
 
     return (
-        <div className='Teste'>
-            <h1>Minha Conta - { state.nome }</h1>
-            <div>
-                <button onClick={() => setMiranda()}>Miranda</button>
-                <button onClick={() => setSenna()}>Senna</button>
+        <div>
+            <div className={"title"}>
+                <h1 >Minha Conta - { state.nome }</h1>
             </div>
-            <div>
-                <Button onClick={handleOpenRegister}>Open Modal Register</Button>
-                <Button onClick={handleOpenEdit}>Open Modal Edit</Button>
-                <Button onClick={handleOpenSenhaEdit}>Open Modal Senha Edit</Button>
+            {/*<div>*/}
+            {/*    <button onClick={() => setMiranda()}>Miranda</button>*/}
+            {/*    <button onClick={() => setSenna()}>Senna</button>*/}
+            {/*</div>*/}
+            <div className={"content"}>
+                <Button onClick={handleOpenRegister}>Cadastrar Usuário</Button>
+                <Button onClick={handleOpenEdit}>Editar Usuário</Button>
+                <Button onClick={handleOpenSenhaEdit}>Alterar Senha</Button>
 
                 <Modal
                     open={openRegister}

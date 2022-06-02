@@ -1,4 +1,10 @@
-.Teste {
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
     display: flex;
     justify-content: center;
 }

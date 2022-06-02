@@ -1,0 +1,19 @@
+.contentInicial {
+    display: block;
+    margin-left: 3%;
+}
+
+.h1 {
+    font-size: 80px;
+}
+
+.h2 {
+    font-size: 25px;
+}
+
+.buttons button {
+    display: block;
+    width: 250px;
+    margin: 10px;
+}
+
