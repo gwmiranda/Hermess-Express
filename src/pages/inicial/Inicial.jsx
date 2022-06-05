@@ -18,29 +18,27 @@ function Inicial() {
                     <h2>Nós entregamos.</h2>
                 </div>
                 <div className={"buttons"}>
-                        <Link to={"/Simulacao"}>
-                            <Button
-                                variant="contained"
-                                margin={"normal"}
-                            >Simular Entrega</Button>
-                        </Link>
-                        <Link to={"/AcompanharEnvio"}>
-                            <Button
-                                variant="contained"
-                                margin={"normal"}
-                            >Acompanhar Envio</Button>
-                        </Link>
-                        <Link to={"/ContratarEntregador"}>
-                            <Button
-                                variant="contained"
-                                margin={"normal"}
-                            >Contratar Entregador</Button>
-                        </Link>
-
+                    <Link to={"/Simulacao"}>
+                        <Button
+                            variant="contained"
+                            margin={"normal"}
+                        >Simular Entrega</Button>
+                    </Link>
+                    <Link to={"/AcompanharEnvio"}>
+                        <Button
+                            variant="contained"
+                            margin={"normal"}
+                        >Acompanhar Envio</Button>
+                    </Link>
+                    <Link to={"/ContratarEntregador"}>
+                        <Button
+                            variant="contained"
+                            margin={"normal"}
+                        >Contratar Entregador</Button>
+                    </Link>
                 </div>
             </div>
         </>
-
     );
 }
 

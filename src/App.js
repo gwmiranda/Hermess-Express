@@ -23,7 +23,6 @@ function App() {
     return (
         <DataContext.Provider value={{ state, setState }}>
             <Router>
-                <Menu />
                 <Routes>
                     <Route path="/" element={<Inicial />} />
                     <Route path="/DashBoard" element={<DashBoard />} />
@@ -33,7 +32,6 @@ function App() {
                     <Route path="/Veiculos" element={<Veiculos />} />
                     <Route path="/Rastreio" element={<Rastreio />} />
                     <Route path="/Simulacao" element={<Simulacao />} />
-                    <Route path="/Login" element={<Login />} />
                     <Route path="/AcompanharEnvio" element={<AcompanharEnvio />} />
                     <Route path="/ContratarEntregador" element={<ContratarEntregador />} />
                 </Routes>

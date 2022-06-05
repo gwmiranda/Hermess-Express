@@ -1,28 +1,18 @@
 import {useState} from "react";
 
-import {
-    Button, 
-    TextField,
-    InputAdornment,
-} from "@mui/material";
+import {Button, InputAdornment, MenuItem, TextField,} from "@mui/material";
 
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
-import { 
-    Grid2,
-    Grid21,
-    Form,
-    FormComponents,
-    Buttons,
-    TitleModal
-} from "./styles";
+import {Buttons, Form, FormComponents, Grid2, Grid21, TitleModal} from "./styles";
 
 const CadastrarUsuario = (props) => {
 
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
-        nascimento: '',
+        sexo: '',
+        data_nascimento: '',
         email: '',
         contato: '',
         senha: '',
@@ -30,9 +20,9 @@ const CadastrarUsuario = (props) => {
     });
 
     function handleChange(e) {
-        const { id, value } = e.target;
+        const { name, value } = e.target;
         setFormData({
-            ...formData, [id]: value
+            ...formData, [name]: value
         });
     }
 
@@ -46,7 +36,7 @@ const CadastrarUsuario = (props) => {
                     <TextField
                         value={formData.nome}
                         onChange={e => handleChange(e)}
-                        id="nome"
+                        name="nome"
                         label="Nome"
                         margin={"normal"}
                         fullWidth
@@ -64,7 +54,7 @@ const CadastrarUsuario = (props) => {
                         <TextField
                             value={formData.email}
                             onChange={e => handleChange(e)}
-                            id="email"
+                            name="email"
                             label="Email"
                             margin={"normal"}
                             fullWidth
@@ -81,7 +71,7 @@ const CadastrarUsuario = (props) => {
                         <TextField
                             value={formData.cpf}
                             onChange={e => handleChange(e)}
-                            id="cpf"
+                            name="cpf"
                             label="Cpf"
                             type={"number"}
                             margin={"normal"}
@@ -99,9 +89,9 @@ const CadastrarUsuario = (props) => {
                     </Grid21>
                     <Grid2>
                         <TextField
-                            value={formData.nascimento}
+                            value={formData.data_nascimento}
                             onChange={e => handleChange(e)}
-                            id="nascimento"
+                            name="data_nascimento"
                             label="Data de Nascimento"
                             type={"date"}
                             margin={"normal"}
@@ -120,7 +110,7 @@ const CadastrarUsuario = (props) => {
                         <TextField
                             value={formData.contato}
                             onChange={e => handleChange(e)}
-                            id="contato"
+                            name="contato"
                             label="Contato"
                             type={"number"}
                             margin={"normal"}
@@ -135,12 +125,33 @@ const CadastrarUsuario = (props) => {
                                 style: {fontSize: '1.3rem'},
                             }}
                         />
+                        <TextField
+                            value={formData.sexo}
+                            onChange={e => handleChange(e)}
+                            name={"sexo"}
+                            label="Sexo"
+                            margin={"normal"}
+                            select
+                            fullWidth
+                            InputLabelProps={{
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        >
+                            <MenuItem key={"M"} value={"M"} id={"M"}>Masculino</MenuItem>
+                            <MenuItem key={"F"} value={"F"} id={"F"}>Feminino</MenuItem>
+                        </TextField>
                     </Grid2>
                     <Grid2>
                         <TextField
                             value={formData.senha}
                             onChange={e => handleChange(e)}
-                            id="senha"
+                            name="senha"
                             type="password"
                             label="Senha"
                             margin={"normal"}
@@ -158,7 +169,7 @@ const CadastrarUsuario = (props) => {
                         <TextField
                             value={formData.confirmarSenha}
                             onChange={e => handleChange(e)}
-                            id="confirmarSenha"
+                            name="confirmarSenha"
                             type="password"
                             label="Confirmar Senha"
                             margin={"normal"}
