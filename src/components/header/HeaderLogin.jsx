@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import Button from '@material-ui/core/Button';
 
@@ -11,37 +11,55 @@ import axios from "../../axios";
 
 const HeaderLogin = () => {
 
-    const [sidebar, setSidebar] = useState(false);
-
-    const showSlideBar = () => {
-        setSidebar(!sidebar);
-    }
-
     const [openRegister, setOpenRegister] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
 
     const handleOpenRegister = () => setOpenRegister(true);
     const handleOpenLogin = () => setOpenLogin(true);
+    const navigate = useNavigate();
 
     const handleClose = () => {
         setOpenRegister(false)
         setOpenLogin(false)
     };
 
-    const onSumbit = (e, formSate) => {
+    const onSumbitRegister = (e, formSate) => {
+        console.log(formSate)
+        registerRequest(formSate)
+        e.preventDefault()
+    }
+
+    const onSumbitLogin = (e, formSate) => {
         console.log(formSate)
         loginRequest(formSate)
         e.preventDefault()
     }
 
-    const loginRequest = async (formSate) => {
+    const registerRequest = async (formSate) => {
         return axios.post('/register', formSate)
             .then((res) => {
-                console.log(res.data)
+                console.log(res)
+                if(res.status === 200) {
+                    navigate('/DashBoard');
+                }
             })
             .catch((error) => {
-                console.log(error.response)
-                alert(error)
+                console.log(error.response);
+                alert(error);
+            })
+    }
+
+    const loginRequest = async (formSate) => {
+        return axios.post('/auth/login', formSate)
+            .then((res) => {
+                console.log(res)
+                if(res.status === 200) {
+                    navigate('/DashBoard');
+                }
+            })
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
             })
     }
 
@@ -74,7 +92,7 @@ const HeaderLogin = () => {
                     >
                         <CadastrarUsuario
                             close = { handleClose }
-                            onSubmit = { onSumbit }
+                            onSubmit = { onSumbitRegister }
                         />
                     </Modal>
 
@@ -100,7 +118,7 @@ const HeaderLogin = () => {
                     >
                         <Login
                             close = { handleClose }
-                            onSubmit = { onSumbit }
+                            onSubmit = { onSumbitLogin }
                         />
                     </Modal>
                 </Buttons>

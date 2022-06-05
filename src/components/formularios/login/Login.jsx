@@ -21,7 +21,7 @@ const Login = (props) => {
 
     const [formData, setFormData] = useState({
         email: '',
-        senha: '',
+        password: '',
     });
 
     function handleChange(e) {
@@ -58,9 +58,9 @@ const Login = (props) => {
                         }}
                     />
                         <TextField
-                            value={formData.senha}
+                            value={formData.password}
                             onChange={e => handleChange(e)}
-                            id="senha"
+                            id="password"
                             label="Senha"
                             margin={"normal"}
                             fullWidth
