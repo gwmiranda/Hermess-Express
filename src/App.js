@@ -11,8 +11,6 @@ import Veiculos from './pages/veiculos/Veiculos';
 import Rastreio from './pages/rastreio/Rastreio';
 import Simulacao from './pages/simulacao/Simulacao';
 import DataContext, {data} from './data/DataContext';
-import Login from "./pages/login/Login";
-import Menu from "./components/menuLateral/Menu";
 import AcompanharEnvio from "./pages/acompanahrEnvio/AcompanharEnvio";
 import ContratarEntregador from "./pages/contratarEntregador/ContratarEntregador";
 

@@ -1,8 +1,12 @@
 import './Rastreio.css';
+import Menu from "../../components/menuLateral/Menu";
 
 function Rastreio() {
     return (
-        <p>Tela Rastreio</p>
+        <>
+            <Menu/>
+            <p>Tela Rastreio</p>
+        </>
     );
 }
 

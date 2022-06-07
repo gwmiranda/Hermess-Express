@@ -1,8 +1,12 @@
 import './ContratarEntregador.css';
+import Menu from "../../components/menuLateral/Menu";
 
 function ContratarEntregador() {
     return (
-        <p>Tela Contratar Entregador</p>
+        <>
+            <Menu/>
+            <p>Tela Contratar Entregador</p>
+        </>
     );
 }
 

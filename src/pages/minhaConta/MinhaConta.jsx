@@ -10,6 +10,7 @@ import {
     Button, 
     Modal,
 } from "@mui/material";
+import Menu from "../../components/menuLateral/Menu";
 
 function MinhaConta() {
 
@@ -61,6 +62,7 @@ function MinhaConta() {
 
     return (
         <div>
+            <Menu/>
             <div className={"title"}>
                 <h1 >Minha Conta - { state.nome }</h1>
             </div>

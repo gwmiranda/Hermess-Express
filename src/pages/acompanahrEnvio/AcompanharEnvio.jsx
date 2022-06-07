@@ -1,8 +1,12 @@
 import './AcompanharEnvio.css';
+import Menu from "../../components/menuLateral/Menu";
 
 function AcompanharEnvio() {
     return (
-        <p>Tela AcompanahrEnvio</p>
+        <>
+            <Menu/>
+            <p>Tela AcompanahrEnvio</p>
+        </>
     );
 }
 

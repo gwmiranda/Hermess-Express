@@ -1,10 +1,14 @@
 import './Veiculos.css';
+import Menu from "../../components/menuLateral/Menu";
 
 function Veiculos() {
     return (
-        <div className='Teste'>
-            <h1>Meus Veiculos</h1>
-        </div>
+        <>
+            <Menu/>
+            <div className='Teste'>
+                <h1>Meus Veiculos</h1>
+            </div>
+        </>
     );
 }
 

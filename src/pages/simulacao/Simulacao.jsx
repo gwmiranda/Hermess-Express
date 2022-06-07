@@ -1,8 +1,12 @@
 import './Simulacao.css';
+import Menu from "../../components/menuLateral/Menu";
 
 function Simulacao() {
     return (
-        <p>Tela Simulacao</p>
+        <>
+            <Menu/>
+            <p>Tela Simulacao</p>
+        </>
     );
 }
 
