@@ -46,7 +46,7 @@ const CadastrarVeiculo = (props) => {
             <Form
                 onSubmit={(e) => onSubmit(e, formData)}
             >
-                <TitleModal>Cadastrar Veículo</TitleModal>
+                <TitleModal>Cadastrar Veiculo</TitleModal>
                 <FormComponents>
                     <TextField
                         value={formData.id_tipo_veiculo}
@@ -89,6 +89,7 @@ const CadastrarVeiculo = (props) => {
                         label="Valor mínimo"
                         margin={"normal"}
                         fullWidth
+                        type={"number"}
                         InputLabelProps={{
                             shrink: true,
                             style: {
@@ -106,6 +107,7 @@ const CadastrarVeiculo = (props) => {
                         label="Valor por Km percorrido"
                         margin={"normal"}
                         fullWidth
+                        type={"number"}
                         InputLabelProps={{
                             shrink: true,
                             style: {
@@ -123,6 +125,7 @@ const CadastrarVeiculo = (props) => {
                         label="Valor por Km deslocamento"
                         margin={"normal"}
                         fullWidth
+                        type={"number"}
                         InputLabelProps={{
                             shrink: true,
                             style: {

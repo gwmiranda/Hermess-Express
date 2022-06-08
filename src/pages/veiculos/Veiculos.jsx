@@ -7,12 +7,15 @@ import CadastrarVeiculo from "../../components/formularios/veiculo/CadastrarVeic
 
 function Veiculos() {
 
-    const [openRegister, setOpenRegister] = useState(false);
+    const [openRegisterTipoVeiculo, setOpenRegisterTipoVeiculo] = useState(false);
+    const [openRegisterVeiculo, setOpenRegisterVeiculo] = useState(false);
 
-    const handleOpenRegister = () => setOpenRegister(true);
+    const handleOpenRegisterTipoVeiculo = () => setOpenRegisterTipoVeiculo(true);
+    const handleOpenRegisterVeiculo = () => setOpenRegisterVeiculo(true);
 
     const handleClose = () => {
-        setOpenRegister(false)
+        setOpenRegisterTipoVeiculo(false)
+        setOpenRegisterVeiculo(false)
     };
 
 
@@ -23,10 +26,10 @@ function Veiculos() {
                 <h1>Meus Veiculos</h1>
             </div>
             <div className={"content"}>
-                <Button onClick={handleOpenRegister}>Cadastrar Tipo Veículo</Button>
+                <Button onClick={handleOpenRegisterTipoVeiculo}>Cadastrar Tipo Veiculo</Button>
 
                 <Modal
-                    open={openRegister}
+                    open={openRegisterTipoVeiculo}
                     onClose={handleClose}
                 >
                     <CadastrarTipoVeiculo
@@ -35,10 +38,10 @@ function Veiculos() {
                 </Modal>
             </div>
             <div className={"content"}>
-                <Button onClick={handleOpenRegister}>Cadastrar Veículo</Button>
+                <Button onClick={handleOpenRegisterVeiculo}>Cadastrar Veiculo</Button>
 
                 <Modal
-                    open={openRegister}
+                    open={openRegisterVeiculo}
                     onClose={handleClose}
                 >
                     <CadastrarVeiculo

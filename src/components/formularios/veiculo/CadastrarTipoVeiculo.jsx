@@ -42,7 +42,7 @@ const CadastrarTipoVeiculo = (props) => {
             <Form
                 onSubmit={(e) => onSubmit(e, formData)}
             >
-                <TitleModal>Cadastrar Tipo Veículo</TitleModal>
+                <TitleModal>Cadastrar Tipo Veiculo</TitleModal>
                 <FormComponents>
                     <TextField
                         value={formData.descricao}
