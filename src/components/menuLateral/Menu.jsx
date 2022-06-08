@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import SubMenu from '../ItemMenu/Item';
+import SubMenu from '../itemMenu/Item';
 
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import CloseIcon from '@material-ui/icons/Close';

@@ -11,6 +11,7 @@ import {
     Modal,
 } from "@mui/material";
 import Menu from "../../components/menuLateral/Menu";
+import CadastrarEndereco from "../../components/formularios/endereco/CadastrarEndereco";
 
 function MinhaConta() {
 
@@ -41,15 +42,18 @@ function MinhaConta() {
     const [userState, setUserState] = useState();
 
     const [openRegister, setOpenRegister] = useState(false);
+    const [openRegisterEndereco, setOpenRegisterEndereco] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openSenhaEdit, setOpenSenhaEdit] = useState(false);
 
     const handleOpenRegister = () => setOpenRegister(true);
+    const handleOpenRegisterEndereco = () => setOpenRegisterEndereco(true);
     const handleOpenEdit = () => setOpenEdit(true);
     const handleOpenSenhaEdit = () => setOpenSenhaEdit(true);
 
     const handleClose = () => {
         setOpenRegister(false)
+        setOpenRegisterEndereco(false)
         setOpenEdit(false)
         setOpenSenhaEdit(false)
     };
@@ -72,6 +76,7 @@ function MinhaConta() {
             {/*</div>*/}
             <div className={"content"}>
                 <Button onClick={handleOpenRegister}>Cadastrar Usuário</Button>
+                <Button onClick={handleOpenRegisterEndereco}>Cadastrar Endereco</Button>
                 <Button onClick={handleOpenEdit}>Editar Usuário</Button>
                 <Button onClick={handleOpenSenhaEdit}>Alterar Senha</Button>
 
@@ -83,6 +88,15 @@ function MinhaConta() {
                         close = { handleClose }
                         onSubmit = { onSumbit }
                     /> 
+                </Modal>
+
+                <Modal
+                    open={openRegisterEndereco}
+                    onClose={handleClose}
+                >
+                    <CadastrarEndereco
+                        close = { handleClose }
+                    />
                 </Modal>
 
                 <Modal
