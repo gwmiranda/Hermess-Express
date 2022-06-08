@@ -21,7 +21,6 @@ const CadastrarTipoVeiculo = (props) => {
     }
 
     function onSubmit(e, formSate) {
-        console.log(formSate)
         request(formSate)
         e.preventDefault()
     }

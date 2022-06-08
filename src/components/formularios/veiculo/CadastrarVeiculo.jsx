@@ -31,16 +31,12 @@ const CadastrarVeiculo = (props) => {
     }
 
     function onSubmit(e, formSate) {
-        console.log(formSate)
         request(formSate)
         e.preventDefault()
     }
 
     const request = async (formSate) => {
         return axios.post('/delivery_type/register', formSate)
-            .then((res) => {
-                console.log(res)
-            })
             .catch((error) => {
                 console.log(error.response);
                 alert(error);
