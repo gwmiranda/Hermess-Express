@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import {Button, InputAdornment, MenuItem, TextField,} from "@mui/material";
 
@@ -6,9 +6,11 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 import {Buttons, Form, FormComponents, Grid2, Grid21, TitleModal} from "./styles";
 import axios from "../../../axios";
+import {logDOM} from "@testing-library/react";
 
 const CadastrarVeiculo = (props) => {
 
+    const [tipoVeiculo, setTipoVeiculo] = useState([])
     const [formData, setFormData] = useState({
         id_tipo_veiculo: '',
         descricao: '',
@@ -16,6 +18,10 @@ const CadastrarVeiculo = (props) => {
         valor_km_percorrido: '',
         valor_km_deslocamento: '',
     });
+
+    useEffect(() => {
+        responseListaTipoVeiculo();
+    }, []);
 
     function handleChange(e) {
         const { name, value } = e.target;
@@ -41,6 +47,17 @@ const CadastrarVeiculo = (props) => {
             })
     }
 
+    const responseListaTipoVeiculo = async () => {
+        return axios.get('/vehicle_type/getAll')
+            .then((res) => {
+                setTipoVeiculo(res.data.data.tipoVeiculo)
+            })
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
+            })
+    }
+
     return (
         <>
             <Form
@@ -51,11 +68,12 @@ const CadastrarVeiculo = (props) => {
                     <TextField
                         value={formData.id_tipo_veiculo}
                         onChange={e => handleChange(e)}
-                        name="id_tipo_veiculo"
+                        name={"id_tipo_veiculo"}
                         label="Tipo Veículo"
                         margin={"normal"}
+                        select
                         fullWidth
-                        InputLabelProps={{ 
+                        InputLabelProps={{
                             shrink: true,
                             style: {
                                 fontSize: "1.5rem"
@@ -64,7 +82,13 @@ const CadastrarVeiculo = (props) => {
                         InputProps={{
                             style: {fontSize: '1.3rem'},
                         }}
-                    />
+                    >
+                        {tipoVeiculo.map((tipo) =>(
+                            <MenuItem key={tipo.id} value={tipo.id} id={tipo.id}>
+                                {tipo.descricao}
+                            </MenuItem>
+                        ))}
+                    </TextField>
                     <TextField
                         value={formData.descricao}
                         onChange={e => handleChange(e)}
