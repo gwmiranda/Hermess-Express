@@ -5,7 +5,12 @@ function Simulacao() {
     return (
         <>
             <Menu/>
-            <p>Tela Simulacao</p>
+            <div>
+                <h1>Simulacao</h1>
+                <div>
+
+                </div>
+            </div>
         </>
     );
 }

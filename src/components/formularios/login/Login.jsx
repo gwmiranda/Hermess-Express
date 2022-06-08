@@ -1,21 +1,8 @@
 import {useState} from "react";
 
-import {
-    Button,
-    TextField,
-    InputAdornment,
-} from "@mui/material";
+import {Button, TextField,} from "@mui/material";
 
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-
-import {
-    Grid2,
-    Grid21,
-    Form,
-    FormComponents,
-    Buttons,
-    TitleModal
-} from "./styles";
+import {Buttons, Form, FormComponents, TitleModal} from "./styles";
 
 const Login = (props) => {
 
