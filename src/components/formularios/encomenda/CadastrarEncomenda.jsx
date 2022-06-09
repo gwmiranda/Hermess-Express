@@ -1,10 +1,8 @@
 import {useState} from "react";
 
-import {Button, InputAdornment, MenuItem, TextField,} from "@mui/material";
+import {Button, TextField,} from "@mui/material";
 
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-
-import {Buttons, Form, FormComponents, Grid2, Grid21, Grid3, TitleModal} from "./styles";
+import {Buttons, Form, FormComponents, Grid2, Grid3, TitleModal} from "./styles";
 import axios from "../../../axios";
 
 const CadastrarEncomenda = (props) => {

@@ -48,7 +48,7 @@ const CadastrarEntregaColeta = (props) => {
             <Form
                 onSubmit={(e) => onSubmit(e)}
             >
-                <TitleModal>Cadastrar Caixa</TitleModal>
+                <TitleModal>Cadastrar Entrega Coleta</TitleModal>
                 <FormComponents>
                     <TextField
                         value={formData.id_encomenda}
