@@ -36,7 +36,7 @@ const HeaderLogin = () => {
     }
 
     const registerRequest = async (formSate) => {
-        return axios.post('/register', formSate)
+        return axios.post('/user/register', formSate)
             .then((res) => {
                 console.log(res)
                 if(res.status === 200) {
