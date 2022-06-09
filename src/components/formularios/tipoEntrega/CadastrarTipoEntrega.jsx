@@ -1,25 +1,24 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-import {Button, InputAdornment, MenuItem, TextField,} from "@mui/material";
+import {Button, MenuItem, TextField,} from "@mui/material";
 
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-
-import {Buttons, Form, FormComponents, Grid2, Grid21, TitleModal} from "./styles";
+import {Buttons, Form, FormComponents, TitleModal} from "../veiculo/styles";
 import axios from "../../../axios";
 
-const CadastrarVeiculo = (props) => {
+const CadastrarTipoEntrega = (props) => {
 
+    const [tipoVeiculo, setTipoVeiculo] = useState([])
     const [formData, setFormData] = useState({
         id_tipo_veiculo: '',
-        id_empresa: '',
         descricao: '',
-        placa: '',
-        carga_maxima: '',
-        comprimento: '',
-        largura: '',
-        altura: '',
-        valor_mensal: '',
+        valor_minimo: '',
+        valor_km_percorrido: '',
+        valor_km_deslocamento: '',
     });
+
+    useEffect(() => {
+        responseListaTipoVeiculo();
+    }, []);
 
     function handleChange(e) {
         const { name, value } = e.target;
@@ -28,16 +27,23 @@ const CadastrarVeiculo = (props) => {
         });
     }
 
-    function onSubmit(e) {
-        console.log(formData)
-        request(formData)
+    function onSubmit(e, formSate) {
+        request(formSate)
         e.preventDefault()
     }
 
-    const request = async () => {
-        return axios.post('/vehicle/register', formData)
+    const request = async (formSate) => {
+        return axios.post('/delivery_type/register', formSate)
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
+            })
+    }
+
+    const responseListaTipoVeiculo = async () => {
+        return axios.get('/vehicle_type/getAll')
             .then((res) => {
-                console.log(res)
+                setTipoVeiculo(res.data.data.tipoVeiculo)
             })
             .catch((error) => {
                 console.log(error.response);
@@ -48,33 +54,17 @@ const CadastrarVeiculo = (props) => {
     return (
         <>
             <Form
-                onSubmit={(e) => onSubmit(e)}
+                onSubmit={(e) => onSubmit(e, formData)}
             >
-                <TitleModal>Cadastrar Veiculo</TitleModal>
+                <TitleModal>Cadastrar Tipo Entrega</TitleModal>
                 <FormComponents>
                     <TextField
                         value={formData.id_tipo_veiculo}
                         onChange={e => handleChange(e)}
-                        name="id_tipo_veiculo"
-                        label="Id tipo veiculo"
+                        name={"id_tipo_veiculo"}
+                        label="Tipo Veículo"
                         margin={"normal"}
-                        fullWidth
-                        InputLabelProps={{ 
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                    <TextField
-                        value={formData.id_empresa}
-                        onChange={e => handleChange(e)}
-                        name="id_empresa"
-                        label="Empresa"
-                        margin={"normal"}
+                        select
                         fullWidth
                         InputLabelProps={{
                             shrink: true,
@@ -85,7 +75,13 @@ const CadastrarVeiculo = (props) => {
                         InputProps={{
                             style: {fontSize: '1.3rem'},
                         }}
-                    />
+                    >
+                        {tipoVeiculo.map((tipo) =>(
+                            <MenuItem key={tipo.id} value={tipo.id} id={tipo.id}>
+                                {tipo.descricao}
+                            </MenuItem>
+                        ))}
+                    </TextField>
                     <TextField
                         value={formData.descricao}
                         onChange={e => handleChange(e)}
@@ -104,12 +100,13 @@ const CadastrarVeiculo = (props) => {
                         }}
                     />
                     <TextField
-                        value={formData.placa}
+                        value={formData.valor_minimo}
                         onChange={e => handleChange(e)}
-                        name="placa"
-                        label="Placa"
+                        name="valor_minimo"
+                        label="Valor mínimo"
                         margin={"normal"}
                         fullWidth
+                        type={"number"}
                         InputLabelProps={{
                             shrink: true,
                             style: {
@@ -121,13 +118,13 @@ const CadastrarVeiculo = (props) => {
                         }}
                     />
                     <TextField
-                        value={formData.carga_maxima}
+                        value={formData.valor_km_percorrido}
                         onChange={e => handleChange(e)}
-                        name="carga_maxima"
-                        label="Carga Maxima"
+                        name="valor_km_percorrido"
+                        label="Valor por Km percorrido"
                         margin={"normal"}
-                        type={"number"}
                         fullWidth
+                        type={"number"}
                         InputLabelProps={{
                             shrink: true,
                             style: {
@@ -139,67 +136,13 @@ const CadastrarVeiculo = (props) => {
                         }}
                     />
                     <TextField
-                        value={formData.comprimento}
+                        value={formData.valor_km_deslocamento}
                         onChange={e => handleChange(e)}
-                        name="comprimento"
-                        label="comprimento"
+                        name="valor_km_deslocamento"
+                        label="Valor por Km deslocamento"
                         margin={"normal"}
-                        type={"number"}
                         fullWidth
-                        InputLabelProps={{
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                    <TextField
-                        value={formData.largura}
-                        onChange={e => handleChange(e)}
-                        name="largura"
-                        label="Largura"
-                        margin={"normal"}
                         type={"number"}
-                        fullWidth
-                        InputLabelProps={{
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                    <TextField
-                        value={formData.altura}
-                        onChange={e => handleChange(e)}
-                        name="altura"
-                        label="Altura"
-                        margin={"normal"}
-                        type={"number"}
-                        fullWidth
-                        InputLabelProps={{
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
-                    <TextField
-                        value={formData.valor_mensal}
-                        onChange={e => handleChange(e)}
-                        name="valor_mensal"
-                        label="Valor Mensal"
-                        margin={"normal"}
-                        type={"number"}
-                        fullWidth
                         InputLabelProps={{
                             shrink: true,
                             style: {
@@ -231,4 +174,4 @@ const CadastrarVeiculo = (props) => {
     );
 }
 
-export default CadastrarVeiculo;
+export default CadastrarTipoEntrega;
