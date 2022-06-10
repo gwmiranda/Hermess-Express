@@ -1,8 +1,8 @@
 import React from 'react'
 
 export const data = {
-    number: 123,
-    nome: 'Gabriel Senna Simão',
+    number: '',
+    nome: '',
 }
 
 const DataContext = React.createContext(null)

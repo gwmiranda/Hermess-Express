@@ -54,7 +54,6 @@ function MinhaConta() {
     const handleClose = () => {
         setOpenRegister(false)
         setOpenRegisterEndereco(false)
-        setOpenPermission(false)
         setOpenEdit(false)
         setOpenSenhaEdit(false)
     };
