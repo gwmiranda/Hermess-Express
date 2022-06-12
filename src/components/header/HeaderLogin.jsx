@@ -42,8 +42,8 @@ const HeaderLogin = () => {
         return axios.post('/user/register', formSate)
             .then((res) => {
                 if(res.status === 200) {
-                    alterarState(res.data.data)
-                    navigate('/DashBoard');
+                    handleClose();
+                    setOpenLogin(true);
                 }
             })
             .catch((error) => {
@@ -56,7 +56,7 @@ const HeaderLogin = () => {
         return axios.post('/auth/login', formSate)
             .then((res) => {
                 if(res.status === 200) {
-                    alterarState(res.data.data)
+                    alterarStateLogin(res.data.data)
                     navigate('/DashBoard');
                 }
             })
@@ -66,7 +66,7 @@ const HeaderLogin = () => {
             })
     }
 
-    function alterarState(res) {
+    function alterarStateLogin(res) {
         setState({
             id: res.user.id,
             token: res.token,
