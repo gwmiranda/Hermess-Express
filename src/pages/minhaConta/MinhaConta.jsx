@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import Menu from "../../components/menuLateral/Menu";
 import CadastrarEndereco from "../../components/formularios/endereco/CadastrarEndereco";
+import MeusEnderecos from "../../components/meusEnderecos/MeusEnderecos";
 
 function MinhaConta() {
 
@@ -45,7 +46,7 @@ function MinhaConta() {
         <div>
             <Menu/>
             <div className={"title"}>
-                <h1 >Minha Conta - { state.nome }</h1>
+                <h1 >Minha Conta</h1>
             </div>
             <div className={"content"}>
                 <Button onClick={handleOpenRegisterEndereco}>Cadastrar Endereco</Button>
@@ -86,6 +87,11 @@ function MinhaConta() {
             </div>
             <div className={"title"}>
                 <h1 >Meus Endereços</h1>
+            </div>
+            <div>
+                <MeusEnderecos>
+                    
+                </MeusEnderecos>
             </div>
         </div>
     );
