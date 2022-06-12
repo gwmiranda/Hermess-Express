@@ -32,13 +32,13 @@ const MinhaConta = () => {
                 <Label>
                     E-mail:
                     <div>
-                        <span>{ state.nome }</span>
+                        <span>{ state.email }</span>
                     </div>  
                 </Label>
                 <Label>
                     Cpf:
                     <div>
-                        <span>{ state.nome }</span>
+                        <span>{ state.cpf }</span>
                     </div>  
                 </Label>
             </ContainerDataGrid2>
@@ -46,19 +46,19 @@ const MinhaConta = () => {
                 <Label>
                     Sexo:
                     <div>
-                        <span>{ state.nome }</span>
+                        <span>{ state.sexo == 'M' ? "Masculino" : "Feminino" }</span>
                     </div>  
                 </Label>
                 <Label>
                     Data Nascimento:
                     <div>
-                        <span>{ state.nome }</span> 
+                        <span>{ state.data_nascimento }</span> 
                     </div>  
                 </Label>
                 <Label>
                     Contato:
                     <div>
-                    <span>{ state.nome }</span>
+                    <span>{ state.contato }</span>
                     </div>  
                 </Label>
             </ContainerDataGrid3>
