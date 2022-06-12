@@ -9,3 +9,31 @@ export const Container = styled.div`
     border-radius: 25px;
     padding: 25px;
 `
+
+export const Table = styled.table`
+    width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box; 
+    border:1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+
+    thead {
+        background-color: black;
+
+        th {
+            padding: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+        }
+    }
+
+    tbody {
+
+        td {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    }
+`
