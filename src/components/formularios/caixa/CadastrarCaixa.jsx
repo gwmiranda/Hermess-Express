@@ -10,12 +10,10 @@ import axios from "../../../axios";
 const CadastrarCaixa = (props) => {
 
     const [formData, setFormData] = useState({
-        id_encomenda : '',
         altura : '',
         largura : '',
         comprimento : '',
         peso : '',
-        tipo_encomenda : '',
     });
 
     function handleChange(e) {
@@ -47,7 +45,6 @@ const CadastrarCaixa = (props) => {
             <Form
                 onSubmit={(e) => onSubmit(e)}
             >
-                <TitleModal>Cadastrar Caixa</TitleModal>
                 <FormComponents>
                     <TextField
                         value={formData.id_encomenda}

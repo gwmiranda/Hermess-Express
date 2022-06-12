@@ -18,12 +18,6 @@ export const Grid21 = styled.nav`
 `
 
 export const Form = styled.form`
-    background-color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
     width: 60%;
 `
 

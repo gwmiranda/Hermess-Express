@@ -7,10 +7,10 @@ import axios from "../../../axios";
 
 const CadastrarEncomenda = (props) => {
 
+    const [stateEnvio, setStateEnvio] = useState({})
     const [formData, setFormData] = useState({
-        id_usuario : '',
-        id_tipo_entrega : '',
         data_agendada : '',
+        hora_agendada : '',
         logradouro_entrega : '',
         numero_entrega : '',
         complemento_entrega : '',
@@ -25,7 +25,10 @@ const CadastrarEncomenda = (props) => {
         cidade_coleta : '',
         estado_coleta : '',
         cep_coleta : '',
-        valor_entrega : '',
+        altura : '',
+        largura : '',
+        comprimento : '',
+        peso : '',
     });
 
     function handleChange(e) {
@@ -37,12 +40,24 @@ const CadastrarEncomenda = (props) => {
 
     function onSubmit(e) {
         console.log(formData)
-        request(formData)
+        request()
         e.preventDefault()
     }
 
+
     const request = async () => {
-        return axios.post('/package/register', formData)
+        return axios.get('/simulator/delivery', {
+            params :
+                {
+                    origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.cep_coleta,
+                    destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.cep_entrega,
+                    data_agendada: formData.data_agendada,
+                    hora_agendada: formData.hora_agendada,
+                    peso: formData.peso,
+                    altura: formData.altura,
+                    largura: formData.largura,
+                    comprimento: formData.comprimento,
+            }})
             .then((res) => {
                 console.log(res)
             })
@@ -52,57 +67,32 @@ const CadastrarEncomenda = (props) => {
             })
     }
 
+    const requestCaixa = async () => {
+        return axios.post('/box/register', formData)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
+            })
+    }
+
+
     return (
         <>
             <Form
                 onSubmit={(e) => onSubmit(e)}
             >
-                <TitleModal>Cadastrar encomenda</TitleModal>
                 <FormComponents>
-                    <Grid3>
-                        <TextField
-                            value={formData.id_usuario}
-                            onChange={e => handleChange(e)}
-                            name="id_usuario"
-                            label="Id usuario"
-                            margin={"normal"}
-                            fullWidth
-                            type={"number"}
-                            InputLabelProps={{
-                                shrink: true,
-                                style: {
-                                    fontSize: "1.5rem"
-                                }
-                            }}
-                            InputProps={{
-                                style: {fontSize: '1.3rem'},
-                            }}
-                        />
-                        <TextField
-                            value={formData.id_tipo_entrega}
-                            onChange={e => handleChange(e)}
-                            name="id_tipo_entrega"
-                            label="Tipo entrega"
-                            margin={"normal"}
-                            fullWidth
-                            type={"number"}
-                            InputLabelProps={{
-                                shrink: true,
-                                style: {
-                                    fontSize: "1.5rem"
-                                }
-                            }}
-                            InputProps={{
-                                style: {fontSize: '1.3rem'},
-                            }}
-                        />
+                    <Grid2>
                         <TextField
                             value={formData.data_agendada}
                             onChange={e => handleChange(e)}
                             name="data_agendada"
                             label="Data Agendada"
                             margin={"normal"}
-                            type={"datetime-local"}
+                            type={"date"}
                             fullWidth
                             InputLabelProps={{
                                 shrink: true,
@@ -114,7 +104,25 @@ const CadastrarEncomenda = (props) => {
                                 style: {fontSize: '1.3rem'},
                             }}
                         />
-                    </Grid3>
+                        <TextField
+                            value={formData.hora_agendada}
+                            onChange={e => handleChange(e)}
+                            name="hora_agendada"
+                            label="Hora Agendada"
+                            margin={"normal"}
+                            type={"time"}
+                            fullWidth
+                            InputLabelProps={{
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                    </Grid2>
                     <Grid2>
                         <TextField
                             value={formData.logradouro_entrega}
@@ -367,24 +375,82 @@ const CadastrarEncomenda = (props) => {
                             }}
                         />
                     </Grid3>
-                    <TextField
-                        value={formData.valor_entrega}
-                        onChange={e => handleChange(e)}
-                        name="valor_entrega"
-                        label="Valor Entrega"
-                        margin={"normal"}
-                        fullWidth
-                        type={"number"}
-                        InputLabelProps={{
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
+                    <Grid2>
+                        <TextField
+                            value={formData.altura}
+                            onChange={e => handleChange(e)}
+                            name="altura"
+                            label="Altura"
+                            margin={"normal"}
+                            fullWidth
+                            type={"number"}
+                            InputLabelProps={{
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                        <TextField
+                            value={formData.largura}
+                            onChange={e => handleChange(e)}
+                            name="largura"
+                            label="Largura"
+                            margin={"normal"}
+                            fullWidth
+                            type={"number"}
+                            InputLabelProps={{
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                    </Grid2>
+                    <Grid2>
+                        <TextField
+                            value={formData.comprimento}
+                            onChange={e => handleChange(e)}
+                            name="comprimento"
+                            label="Comprimento"
+                            margin={"normal"}
+                            fullWidth
+                            type={"number"}
+                            InputLabelProps={{
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                        <TextField
+                            value={formData.peso}
+                            onChange={e => handleChange(e)}
+                            name="peso"
+                            label="Peso"
+                            margin={"normal"}
+                            type={"number"}
+                            fullWidth
+                            InputLabelProps={{
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                    </Grid2>
                 </FormComponents>
                 <Buttons>
                     <Button

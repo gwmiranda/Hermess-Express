@@ -184,7 +184,7 @@ const SimulacaoForm = (props) => {
                         onChange={e => handleChange(e)}
                         id="comprimento"
                         name="comprimento"
-                        label="C omprimento"
+                        label="Comprimento"
                         margin={"normal"}
                         type={"number"}
                         fullWidth
