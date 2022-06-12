@@ -2,7 +2,7 @@ import {useState} from "react";
 
 import {Button, TextField,} from "@mui/material";
 
-import {Buttons, Form, FormComponents, TitleModal} from "./styles";
+import {Buttons, Form, FormComponents} from "./styles";
 import axios from "../../../axios";
 
 const SimulacaoForm = (props) => {

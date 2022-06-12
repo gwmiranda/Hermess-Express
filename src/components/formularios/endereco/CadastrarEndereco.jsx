@@ -1,13 +1,15 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 
-import {Button, InputAdornment, MenuItem, TextField,} from "@mui/material";
-
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import {Button, TextField,} from "@mui/material";
 
 import {Buttons, Form, FormComponents, Grid2, Grid21, TitleModal} from "./styles";
 import axios from "../../../axios";
 
+import DataContext from "../../../data/DataContext";
+
 const CadastrarUsuario = (props) => {
+
+    const { state, setState } = useContext(DataContext)
 
     const [formData, setFormData] = useState({
         id_usuario: '',
@@ -28,13 +30,16 @@ const CadastrarUsuario = (props) => {
         });
     }
 
-    function onSubmit(e, formSate) {
-        request(formSate)
+    function onSubmit(e) {
+        setFormData({
+            ...formData, id_usuario: state.id
+        });
+        request(formData)
         e.preventDefault()
     }
 
     const request = async (formSate) => {
-        return axios.post('/address/register', formSate)
+        return axios.post('/address/register', formData)
             .catch((error) => {
                 console.log(error.response);
                 alert(error);
@@ -44,27 +49,10 @@ const CadastrarUsuario = (props) => {
     return (
         <>
             <Form
-                onSubmit={(e) => onSubmit(e, formData)}
+                onSubmit={(e) => onSubmit(e)}
             >
                 <TitleModal>Cadastrar Endereco</TitleModal>
                 <FormComponents>
-                    <TextField
-                        value={formData.id_usuario}
-                        onChange={e => handleChange(e)}
-                        name="id_usuario"
-                        label="Usuario"
-                        margin={"normal"}
-                        fullWidth
-                        InputLabelProps={{ 
-                            shrink: true,
-                            style: {
-                                fontSize: "1.5rem"
-                            }
-                        }}
-                        InputProps={{
-                            style: {fontSize: '1.3rem'},
-                        }}
-                    />
                     <Grid21>
                         <TextField
                             value={formData.descricao}

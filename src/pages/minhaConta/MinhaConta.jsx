@@ -17,28 +17,6 @@ function MinhaConta() {
 
     const { state, setState } = useContext(DataContext)
 
-    function setMiranda() {
-        setState({
-            ...state,
-            nome: 'Miranda',
-        })
-    }
-
-    function setSenna() {
-        setState({
-            ...state,
-            nome: 'Senna',
-        })
-    }
-
-    const stateExample = {
-        nome: 'Gabriel Senna',
-        cpf: '10310310325',
-        nascimento: '2000-09-26',
-        email: 'senna@gmail.com',
-        contato: '41988887777',
-    }
-
     const [userState, setUserState] = useState();
 
     const [openRegister, setOpenRegister] = useState(false);
@@ -104,9 +82,8 @@ function MinhaConta() {
                     onClose={handleClose}
                 > 
                     <EditarUsuario
-                        state = { stateExample }
                         close = { handleClose }
-                        onSubmit = { onSumbit }
+                        state = { state }
                     /> 
                 </Modal>
 

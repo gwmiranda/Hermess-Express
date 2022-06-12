@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 
 import Button from '@material-ui/core/Button';
@@ -8,8 +8,11 @@ import CadastrarUsuario from "../formularios/usuario/CadastrarUsuario";
 import {Modal} from "@mui/material";
 import Login from "../formularios/login/Login";
 import axios from "../../axios";
+import DataContext from "../../data/DataContext";
 
 const HeaderLogin = () => {
+
+    const {state, setState} = useContext(DataContext)
 
     const [openRegister, setOpenRegister] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
@@ -38,8 +41,8 @@ const HeaderLogin = () => {
     const registerRequest = async (formSate) => {
         return axios.post('/user/register', formSate)
             .then((res) => {
-                console.log(res)
                 if(res.status === 200) {
+                    alterarState(res.data.data)
                     navigate('/DashBoard');
                 }
             })
@@ -52,8 +55,8 @@ const HeaderLogin = () => {
     const loginRequest = async (formSate) => {
         return axios.post('/auth/login', formSate)
             .then((res) => {
-                console.log(res)
                 if(res.status === 200) {
+                    alterarState(res.data.data)
                     navigate('/DashBoard');
                 }
             })
@@ -61,6 +64,21 @@ const HeaderLogin = () => {
                 console.log(error.response);
                 alert(error);
             })
+    }
+
+    function alterarState(res) {
+        setState({
+            id: res.user.id,
+            token: res.token,
+            nome: res.user.nome,
+            password: res.user.password,
+            contato: res.user.contato,
+            cpf: res.user.cpf,
+            data_nascimento: res.user.data_nascimento,
+            email: res.user.email,
+            sexo: res.user.sexo,
+            id_permissao: res.user.id_permissao,
+        })
     }
 
     return (

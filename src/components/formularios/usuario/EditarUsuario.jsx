@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 
 import {
     Button, 
@@ -16,9 +16,12 @@ import {
     Buttons,
     TitleModal
 } from "./styles";
+import axios from "../../../axios";
+import DataContext from "../../../data/DataContext";
 
 const EditarUsuario = (props) => {
 
+    const {state, setState} = useContext(DataContext)
     const [formData, setFormData] = useState(props.state);
 
     function handleChange(e) {
@@ -28,10 +31,40 @@ const EditarUsuario = (props) => {
         });
     }
 
+    function onSubmit(e) {
+        request(formData)
+        e.preventDefault()
+    }
+
+    const request = async () => {
+        return axios.put(`/user/update/${formData.id}`, formData)
+            .then((res) => {
+                alterarState(res.data.data.usuario)
+            })
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
+            })
+    }
+
+    function alterarState(res) {
+        setState({
+            id: res.id,
+            nome: res.nome,
+            password: res.password,
+            contato: res.contato,
+            cpf: res.cpf,
+            data_nascimento: res.data_nascimento,
+            email: res.email,
+            sexo: res.sexo,
+            id_permissao: res.id_permissao,
+        })
+    }
+
     return (
         <>
             <Form
-                onSubmit={(e) => props.onSubmit(e, formData)}
+                onSubmit={(e) => onSubmit(e)}
             >
                 <TitleModal>Editar Usuário</TitleModal>
                 <FormComponents>
@@ -91,7 +124,7 @@ const EditarUsuario = (props) => {
                     </Grid21>
                     <Grid2>
                         <TextField
-                            value={formData.nascimento}
+                            value={formData.data_nascimento}
                             onChange={e => handleChange(e)}
                             id="nascimento"
                             label="Data de Nascimento"
@@ -106,7 +139,6 @@ const EditarUsuario = (props) => {
                             }}
                             InputProps={{
                                 style: {fontSize: '1.3rem'},
-                                endAdornment: <InputAdornment position="end"><CalendarTodayIcon /></InputAdornment>,
                             }}
                         />
                         <TextField

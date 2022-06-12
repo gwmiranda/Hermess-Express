@@ -27,7 +27,7 @@ function ManterEmpresa() {
         <div>
             <Menu/>
             <div className={"title"}>
-                <h1 >Minha Conta - { state.nome }</h1>
+                <h1 >Manter empresa</h1>
             </div>
             <div className={"content"}>
                 <Button onClick={handleOpenRegister}>Cadastrar Empresa</Button>
