@@ -14,24 +14,27 @@ export const Table = styled.table`
     width: 90%;
     margin: 0 auto;
     box-sizing: border-box; 
-    border:1px solid black;
+    overflow:hidden;
     border-collapse: collapse;
     text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 
     thead {
-        background-color: black;
-
         th {
             padding: 15px;
             font-size: 1.4rem;
             font-weight: bold;
             color: white;
+            background-color: black;
         }
     }
 
     tbody {
+        border: 1px solid black;
 
         td {
+            padding: 10px;
             font-size: 1.5rem;
             font-weight: bold;
         }
