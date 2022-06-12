@@ -6,6 +6,8 @@ import CadastrarUsuario from '../../components/formularios/usuario/CadastrarUsua
 import EditarUsuario from '../../components/formularios/usuario/EditarUsuario';
 import EditarSenhaUsuario from '../../components/formularios/usuario/EditarSenhaUsuario';
 
+import MinhaContaComponent from "../../components/minhaConta/MinhaConta";
+
 import {
     Button, 
     Modal,
@@ -54,7 +56,7 @@ function MinhaConta() {
     const handleClose = () => {
         setOpenRegister(false)
         setOpenRegisterEndereco(false)
-        setOpenPermission(false)
+        // setOpenPermission(false)
         setOpenEdit(false)
         setOpenSenhaEdit(false)
     };
@@ -120,6 +122,12 @@ function MinhaConta() {
                         onSubmit = { onSumbit }
                     /> 
                 </Modal>
+            </div>
+            <div>
+            <MinhaContaComponent />
+            </div>
+            <div className={"title"}>
+                <h1 >Meus Endereços</h1>
             </div>
         </div>
     );
