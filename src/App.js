@@ -12,7 +12,6 @@ import Rastreio from './pages/rastreio/Rastreio';
 import Simulacao from './pages/simulacao/Simulacao';
 import DataContext, {data} from './data/DataContext';
 import AcompanharEnvio from "./pages/acompanahrEnvio/AcompanharEnvio";
-import ContratarEntregador from "./pages/contratarEntregador/ContratarEntregador";
 
 function App() {
 
@@ -31,7 +30,6 @@ function App() {
                     <Route path="/Rastreio" element={<Rastreio />} />
                     <Route path="/Simulacao" element={<Simulacao />} />
                     <Route path="/AcompanharEnvio" element={<AcompanharEnvio />} />
-                    <Route path="/ContratarEntregador" element={<ContratarEntregador />} />
                 </Routes>
             </Router>
         </ DataContext.Provider>
