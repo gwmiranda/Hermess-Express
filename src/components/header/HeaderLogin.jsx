@@ -42,6 +42,7 @@ const HeaderLogin = () => {
                 if(res.status === 200) {
                     handleClose();
                     setOpenLogin(true);
+                    alert("Usuario cadastrado")
                 }
             })
             .catch((error) => {
