@@ -30,12 +30,6 @@ function Inicial() {
                             margin={"normal"}
                         >Acompanhar Envio</Button>
                     </Link>
-                    <Link to={"/ContratarEntregador"}>
-                        <Button
-                            variant="contained"
-                            margin={"normal"}
-                        >Contratar Entregador</Button>
-                    </Link>
                 </div>
             </div>
         </>
