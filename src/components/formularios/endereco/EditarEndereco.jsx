@@ -7,20 +7,19 @@ import axios from "../../../axios";
 
 import DataContext from "../../../data/DataContext";
 
-const CadastrarUsuario = (props) => {
-
-    const { state, setState } = useContext(DataContext)
+const EditarUsuario = (props) => {
 
     const [formData, setFormData] = useState({
-        id_usuario: state.id,
-        descricao: '',
-        logradouro: '',
-        numero: '',
-        complemento: '',
-        bairro: '',
-        cidade: '',
-        estado: '',
-        cep: '',
+        id: props.state.id,
+        id_usuario: props.state.id_usuario,
+        descricao: props.state.descricao,
+        logradouro: props.state.logradouro,
+        numero: props.state.numero,
+        complemento: props.state.complemento,
+        bairro: props.state.bairro,
+        cidade: props.state.cidade,
+        estado: props.state.estado,
+        cep: props.state.cep,
     });
 
     function handleChange(e) {
@@ -35,12 +34,14 @@ const CadastrarUsuario = (props) => {
         e.preventDefault()
     }
 
+
+
     return (
         <>
             <Form
                 onSubmit={(e) => onSubmit(e)}
             >
-                <TitleModal>Cadastrar Endereco</TitleModal>
+                <TitleModal>Editar Endereco</TitleModal>
                 <FormComponents>
                     <Grid21>
                         <TextField
@@ -209,4 +210,4 @@ const CadastrarUsuario = (props) => {
     );
 }
 
-export default CadastrarUsuario;
+export default EditarUsuario;

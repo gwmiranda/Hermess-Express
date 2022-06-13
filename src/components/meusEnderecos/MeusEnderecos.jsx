@@ -15,6 +15,9 @@ import {
   Button, 
   Modal,
 } from "@mui/material";
+import EditarEndereco from "../formularios/endereco/EditarEndereco";
+import CadastrarEndereco from "../formularios/endereco/CadastrarEndereco";
+import ModalDelete from "../modal/remover/ModalDelete";
 
 const MeusEnderecos = () => {
 
@@ -24,7 +27,20 @@ const MeusEnderecos = () => {
     const [openEdit, setOpenEdit] = useState(false);
     const [openRemove, setOpenRemove] = useState(false);
 
-    const [ enderecos, setEnderecos ] = useState();
+    const [enderecos, setEnderecos ] = useState();
+    const [editEndereco, setEditEndereco ] = useState();
+    const [deleteEndereco, setDeleteEndereco ] = useState();
+
+    const handleOpenRegisterEndereco = () => setOpenRegister(true);
+    const handleOpenEditEndereco = (state) => {
+        setEditEndereco(state)
+        setOpenEdit(true)
+    };
+    const handleOpenRemove = (id) => {
+        console.log(id)
+        setDeleteEndereco(id)
+        // setOpenRemove(true)
+    };
 
     const handleClose = () => {
       setOpenRegister(false)
@@ -47,7 +63,41 @@ const MeusEnderecos = () => {
       registerRequest();
     }, []);
 
-    console.log(enderecos);
+    const requestEditEndereco = async (formSate) => {
+        return axios.put(`/address/update/${formSate.id}`, formSate)
+            .then((res) => {
+                handleClose()
+                registerRequest()
+            })
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
+            })
+    }
+
+    const requestRemoveEndereco = async () => {
+        return axios.delete(`/address/delete/${deleteEndereco}`)
+            .then((res) => {
+                handleClose()
+                registerRequest()
+            })
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
+            })
+    }
+
+    const requestCadastrarEndereco = async (formData) => {
+        return axios.post('/address/register', formData)
+            .then((res) => {
+                handleClose()
+                registerRequest()
+            })
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
+            })
+    }
 
     return (
       <>
@@ -55,30 +105,32 @@ const MeusEnderecos = () => {
             open={openRegister}
             onClose={handleClose}
         > 
-            {/* <EditarUsuario
+            <CadastrarEndereco
                 close = { handleClose }
-                state = { state }
-            />  */}
+                onSubmit = {requestCadastrarEndereco}
+            />
         </Modal>
 
         <Modal
             open={openEdit}
             onClose={handleClose}
         > 
-            {/* <EditarUsuario
+            <EditarEndereco
                 close = { handleClose }
-                state = { state }
-            />  */}
+                state = { editEndereco }
+                onSubmit = { requestEditEndereco }
+            />
         </Modal>
 
         <Modal
             open={openRemove}
             onClose={handleClose}
         > 
-            {/* <EditarUsuario
+            <ModalDelete
                 close = { handleClose }
-                state = { state }
-            />  */}
+                descricao = "Deseja confirmar a exclusão desse endereco?"
+                onSubmit = { requestRemoveEndereco }
+            />
         </Modal>
 
         <Table>
@@ -95,7 +147,7 @@ const MeusEnderecos = () => {
             <th colspan="2">
               <Button 
                 color='warning' 
-                // onClick={() => props.close()}
+                onClick={() => handleOpenRegisterEndereco()}
                 variant="contained"
                 style={{backgroundColor: "green"}}
                 startIcon={<AddCircleOutlineIcon />}>
@@ -118,7 +170,7 @@ const MeusEnderecos = () => {
                   <td colspan="2">
                     <Button 
                       color='primary' 
-                      // onClick={() => props.close()}
+                      onClick={() => handleOpenEditEndereco(endereco)}
                       variant="contained"
                       style={{margin: "2px"}}
                       startIcon={<EditIcon />}>
@@ -126,7 +178,7 @@ const MeusEnderecos = () => {
                     </Button>
                     <Button 
                       color='warning' 
-                      // onClick={() => props.close()}
+                      onClick={() => handleOpenRemove(endereco.id)}
                       variant="contained"
                       style={{backgroundColor: "red", margin: "2px"}}
                       startIcon={<DeleteIcon />}>

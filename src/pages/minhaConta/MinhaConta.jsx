@@ -15,6 +15,7 @@ import {
 import Menu from "../../components/menuLateral/Menu";
 import CadastrarEndereco from "../../components/formularios/endereco/CadastrarEndereco";
 import MeusEnderecos from "../../components/meusEnderecos/MeusEnderecos";
+import EditarEndereco from "../../components/formularios/endereco/EditarEndereco";
 
 function MinhaConta() {
 
@@ -23,15 +24,18 @@ function MinhaConta() {
     const [userState, setUserState] = useState();
 
     const [openRegisterEndereco, setOpenRegisterEndereco] = useState(false);
+    const [openEditEndereco, setOpenEditEndereco] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openSenhaEdit, setOpenSenhaEdit] = useState(false);
 
     const handleOpenRegisterEndereco = () => setOpenRegisterEndereco(true);
+    const handleOpenEditEndereco = () => setOpenEditEndereco(true);
     const handleOpenEdit = () => setOpenEdit(true);
     const handleOpenSenhaEdit = () => setOpenSenhaEdit(true);
 
     const handleClose = () => {
         setOpenRegisterEndereco(false)
+        setOpenEditEndereco(false)
         setOpenEdit(false)
         setOpenSenhaEdit(false)
     };
@@ -49,18 +53,8 @@ function MinhaConta() {
                 <h1 >Minha Conta</h1>
             </div>
             <div className={"content"}>
-                <Button onClick={handleOpenRegisterEndereco}>Cadastrar Endereco</Button>
                 <Button onClick={handleOpenEdit}>Editar Usuário</Button>
                 <Button onClick={handleOpenSenhaEdit}>Alterar Senha</Button>
-
-                <Modal
-                    open={openRegisterEndereco}
-                    onClose={handleClose}
-                >
-                    <CadastrarEndereco
-                        close = { handleClose }
-                    />
-                </Modal>
 
                 <Modal
                     open={openEdit}
