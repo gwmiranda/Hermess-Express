@@ -40,6 +40,8 @@ const EditarUsuario = (props) => {
         return axios.put(`/user/update/${formData.id}`, formData)
             .then((res) => {
                 alterarState(res.data.data.usuario)
+                props.close()
+                alert("Usuário editado")
             })
             .catch((error) => {
                 console.log(error.response);

@@ -29,23 +29,16 @@ const MeusEnderecos = () => {
 
     const [enderecos, setEnderecos ] = useState();
     const [editEndereco, setEditEndereco ] = useState();
-    const [deleteEndereco, setDeleteEndereco ] = useState();
 
     const handleOpenRegisterEndereco = () => setOpenRegister(true);
     const handleOpenEditEndereco = (state) => {
         setEditEndereco(state)
         setOpenEdit(true)
     };
-    const handleOpenRemove = (id) => {
-        console.log(id)
-        setDeleteEndereco(id)
-        setOpenRemove(true)
-    };
 
     const handleClose = () => {
       setOpenRegister(false)
       setOpenEdit(false)
-      setOpenRemove(false)
   };
 
     const registerRequest = async () => {
@@ -78,6 +71,7 @@ const MeusEnderecos = () => {
             .then((res) => {
                 handleClose()
                 registerRequest()
+                alert("Endereco excluido")
             })
             .catch((error) => {
                 console.log(error.response);
@@ -89,6 +83,7 @@ const MeusEnderecos = () => {
             .then((res) => {
                 handleClose()
                 registerRequest()
+                alert("Endereco cadastrado")
             })
             .catch((error) => {
                 console.log(error.response);
@@ -106,7 +101,6 @@ const MeusEnderecos = () => {
                 onSubmit = {requestCadastrarEndereco}
             />
         </Modal>
-
         <Modal
             open={openEdit}
             onClose={handleClose}
@@ -117,18 +111,6 @@ const MeusEnderecos = () => {
                 onSubmit = { requestEditEndereco }
             />
         </Modal>
-
-        {/* <Modal
-            open={openRemove}
-            onClose={handleClose}
-        > 
-            <ModalDelete
-                close = { handleClose }
-                descricao = "Deseja confirmar a exclusão desse endereco?"
-                onSubmit = { requestRemoveEndereco }
-            />
-        </Modal> */}
-
         <Table>
           <thead>
             <th>ID</th>
@@ -173,8 +155,7 @@ const MeusEnderecos = () => {
                         Editar
                     </Button>
                     <Button 
-                      color='warning' 
-                      // onClick={() => handleOpenRemove(endereco.id)}
+                      color='warning'
                       onClick={() => requestRemoveEndereco(endereco.id)}
                       variant="contained"
                       style={{backgroundColor: "red", margin: "2px"}}

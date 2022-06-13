@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 
 import {
     Button, 
@@ -12,13 +12,17 @@ import {
     Buttons,
     TitleModal
 } from "./styles";
+import axios from "../../../axios";
+import DataContext from "../../../data/DataContext";
 
 const EditarSenhaUsuario = (props) => {
 
+    const {state, setState} = useContext(DataContext)
     const [formData, setFormData] = useState({
+        email: state.email,
+        senha_atual: '',
         senha: '',
-        novaSenha: '',
-        confirmarSenha: '',
+        confirmar_senha: '',
     });
 
     function handleChange(e) {
@@ -28,18 +32,36 @@ const EditarSenhaUsuario = (props) => {
         });
     }
 
+    function onSubmit(e) {
+        request(formData)
+        e.preventDefault()
+    }
+
+    const request = async () => {
+        return axios.put(`/user/updatePassword/${state.id}`, {...formData, password : formData.senha_atual})
+            .then((res) => {
+                setState({...state, password: res.data.data.usuario.password})
+                props.close()
+                alert("Senha editada")
+            })
+            .catch((error) => {
+                console.log(error.response);
+                alert(error);
+            })
+    }
+
     return (
         <>
             <Form
-                onSubmit={(e) => props.onSubmit(e, formData)}
+                onSubmit={(e) => onSubmit(e, formData)}
             >
                 <TitleModal>Editar Senha Usuário</TitleModal>
                 <FormComponents>
                     <Grid3>
                         <TextField
-                            value={formData.senha}
+                            value={formData.senha_atual}
                             onChange={e => handleChange(e)}
-                            id="senha"
+                            id="senha_atual"
                             type="password"
                             label="Senha Atual"
                             margin={"normal"}
@@ -55,9 +77,9 @@ const EditarSenhaUsuario = (props) => {
                             }}
                         />
                         <TextField
-                            value={formData.novaSenha}
+                            value={formData.senha}
                             onChange={e => handleChange(e)}
-                            id="novaSenha"
+                            id="senha"
                             type="password"
                             label="Nova Senha"
                             margin={"normal"}
@@ -73,9 +95,9 @@ const EditarSenhaUsuario = (props) => {
                             }}
                         />
                         <TextField
-                            value={formData.confirmarSenha}
+                            value={formData.confirmar_senha}
                             onChange={e => handleChange(e)}
-                            id="confirmarSenha"
+                            id="confirmar_senha"
                             type="password"
                             label="Confirmar Senha"
                             margin={"normal"}

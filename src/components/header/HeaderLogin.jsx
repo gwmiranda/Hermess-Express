@@ -27,13 +27,11 @@ const HeaderLogin = () => {
     };
 
     const onSumbitRegister = (e, formSate) => {
-        console.log(formSate)
         registerRequest(formSate)
         e.preventDefault()
     }
 
     const onSumbitLogin = (e, formSate) => {
-        console.log(formSate)
         loginRequest(formSate)
         e.preventDefault()
     }
@@ -44,6 +42,7 @@ const HeaderLogin = () => {
                 if(res.status === 200) {
                     handleClose();
                     setOpenLogin(true);
+                    alert("Usuario cadastrado")
                 }
             })
             .catch((error) => {
