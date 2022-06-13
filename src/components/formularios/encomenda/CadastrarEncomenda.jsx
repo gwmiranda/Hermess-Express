@@ -80,8 +80,8 @@ const CadastrarEncomenda = (props) => {
     const request = async () => {
         return axios.get('/simulator/delivery', {
             params : {
-                origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.cep_coleta,
-                destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.cep_entrega,
+                origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.estado_coleta+","+formData.cep_coleta,
+                destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.estado_entrega+","+formData.cep_entrega,
                 data_agendada: formData.data_agendada,
                 hora_agendada: formData.hora_agendada,
                 peso: formData.peso,
@@ -110,8 +110,8 @@ const CadastrarEncomenda = (props) => {
     const confirmar = async (indice) => {
         return axios.get('/simulator/confirm', {
             params : {
-                origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.cep_coleta,
-                destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.cep_entrega,
+                origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.estado_coleta+","+formData.cep_coleta,
+                destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.estado_entrega+","+formData.cep_entrega,
                 data_agendada: formData.data_agendada,
                 hora_agendada: formData.hora_agendada,
                 peso: formData.peso,
