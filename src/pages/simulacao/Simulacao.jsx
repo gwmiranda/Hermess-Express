@@ -10,9 +10,9 @@ function Simulacao() {
             <div className={'title'}>
                 <h1>Simulacao</h1>
             </div>
-            <div className={'content'}>
+            {/* <div className={'content'}>
                 <SimulacaoForm/>
-            </div>
+            </div> */}
             <div className={'content'}>
                 <CadastrarEncomenda/>
             </div>

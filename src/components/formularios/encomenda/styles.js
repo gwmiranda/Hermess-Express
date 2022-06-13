@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+    width: 100%;
+    display: inline-block;
+`
+
 export const Grid2 = styled.nav`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -18,23 +23,19 @@ export const Grid21 = styled.nav`
 `
 
 export const Form = styled.form`
-    width: 60%;
+    width: 80%;
+    margin: 0 auto;
 `
 
-export const FormComponents = styled.div`
-    padding: 20px;
-`
+export const FormComponents = styled.div``
 
 export const Buttons = styled.div`
     display: flex;
-    justify-content: flex-end;
-    border-top: 1px solid #D3D3D3;
-    margin-top: 15px;
-    padding: 20px;
+    justify-content: center;
+    padding: 15px;
 
     button {
-        margin-left: 10px;
-        font-size: 1.2em;
+        font-size: 1.4em;
     }
 `
 
@@ -48,4 +49,29 @@ export const TitleModal = styled.span`
     font-weight: bolder;
     padding: 15px;
     color: white;
+`
+
+export const TittleCards = styled.div`
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.8em;
+    font-weight: bolder;
+    margin: 10px auto;
+    padding-top: 20px;
+`
+
+export const Cards = styled.div`
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 80%;
+    height: auto;
+`
+export const ButtonCard = styled.button`
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
 `

@@ -1,13 +1,24 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
 
 import {Button, TextField,} from "@mui/material";
 
-import {Buttons, Form, FormComponents, Grid2, Grid3, TitleModal} from "./styles";
+import {Container, Buttons, Form, FormComponents, Grid2, Grid3, Grid21, TittleCards, Cards, ButtonCard} from "./styles";
+
+import CardVeiculos from "../../cards/veiculos/CardVeiculos";
+import DataContext from "../../../data/DataContext";
+
 import axios from "../../../axios";
 
 const CadastrarEncomenda = (props) => {
 
+    const { state, setState } = useContext(DataContext)
+
+    console.log(state)
+
     const [stateEnvio, setStateEnvio] = useState({})
+    const [valores, setValores] = useState([]);
+    const [erro, setErro] = useState([]);
+    const [horario, setHorario] = useState([]);
     const [formData, setFormData] = useState({
         data_agendada : '',
         hora_agendada : '',
@@ -42,45 +53,94 @@ const CadastrarEncomenda = (props) => {
         console.log(formData)
         request()
         e.preventDefault()
+        console.log(valores);
+        console.log(erro);
+        console.log(horario);
+    }
+
+    const submitSimulator = (indice) => {
+
+        if (state.id != '') {
+            valores.map((value, key) => {
+                if (key == indice) {
+                    if (!value.includes('Não')) {
+                        let opcao;
+                        if (indice == 0) opcao = 'agil';
+                        if (indice == 1) opcao = 'convencional';
+                        if (indice == 2) opcao = 'pesado';
+                        confirmar(opcao);
+                        console.log('dentro')
+                    }
+                }
+            })
+        }
     }
 
 
     const request = async () => {
         return axios.get('/simulator/delivery', {
-            params :
-                {
-                    origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.cep_coleta,
-                    destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.cep_entrega,
-                    data_agendada: formData.data_agendada,
-                    hora_agendada: formData.hora_agendada,
-                    peso: formData.peso,
-                    altura: formData.altura,
-                    largura: formData.largura,
-                    comprimento: formData.comprimento,
+            params : {
+                origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.cep_coleta,
+                destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.cep_entrega,
+                data_agendada: formData.data_agendada,
+                hora_agendada: formData.hora_agendada,
+                peso: formData.peso,
+                altura: formData.altura,
+                largura: formData.largura,
+                comprimento: formData.comprimento,
             }})
             .then((res) => {
                 console.log(res)
+                if (typeof res.data.data[0].calculo.erro != 'undefined') {
+                    setErro(res.data.data[0].calculo.erro);
+                } else {
+                    let array = [];
+                    array.push(res.data.data[0].calculo.agil);
+                    array.push(res.data.data[0].calculo.convencional);
+                    array.push(res.data.data[0].calculo.pesado);
+                    setValores(array);
+                    setHorario(res.data.data[0].resultApi.horarios);
+                }
             })
             .catch((error) => {
                 console.log(error.response);
-                alert(error);
             })
     }
 
-    const requestCaixa = async () => {
-        return axios.post('/box/register', formData)
+    const confirmar = async (indice) => {
+        return axios.get('/simulator/confirm', {
+            params : {
+                origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.cep_coleta,
+                destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.cep_entrega,
+                data_agendada: formData.data_agendada,
+                hora_agendada: formData.hora_agendada,
+                peso: formData.peso,
+                altura: formData.altura,
+                largura: formData.largura,
+                comprimento: formData.comprimento,
+                opcao_selecionada: indice,
+                id_usuario: state.id
+            }})
             .then((res) => {
                 console.log(res)
+                if (typeof res.data.data[0].calculo.erro != 'undefined') {
+                    setErro(res.data.data[0].calculo.erro);
+                } else {
+                    let array = [];
+                    array.push(res.data.data[0].calculo.agil);
+                    array.push(res.data.data[0].calculo.convencional);
+                    array.push(res.data.data[0].calculo.pesado);
+                    setValores(array);
+                    setHorario(res.data.data[0].resultApi.horarios);
+                }
             })
             .catch((error) => {
                 console.log(error.response);
-                alert(error);
             })
     }
 
-
     return (
-        <>
+        <Container>
             <Form
                 onSubmit={(e) => onSubmit(e)}
             >
@@ -93,6 +153,7 @@ const CadastrarEncomenda = (props) => {
                             label="Data Agendada"
                             margin={"normal"}
                             type={"date"}
+                            format={'YYYY-MM-DD'}
                             fullWidth
                             InputLabelProps={{
                                 shrink: true,
@@ -103,6 +164,7 @@ const CadastrarEncomenda = (props) => {
                             InputProps={{
                                 style: {fontSize: '1.3rem'},
                             }}
+                            // defaultValue={}
                         />
                         <TextField
                             value={formData.hora_agendada}
@@ -111,6 +173,7 @@ const CadastrarEncomenda = (props) => {
                             label="Hora Agendada"
                             margin={"normal"}
                             type={"time"}
+                            format={'HH:SS'}
                             fullWidth
                             InputLabelProps={{
                                 shrink: true,
@@ -121,9 +184,10 @@ const CadastrarEncomenda = (props) => {
                             InputProps={{
                                 style: {fontSize: '1.3rem'},
                             }}
+                            // defaultValue={}
                         />
                     </Grid2>
-                    <Grid2>
+                    <Grid21>
                         <TextField
                             value={formData.logradouro_entrega}
                             onChange={e => handleChange(e)}
@@ -159,8 +223,8 @@ const CadastrarEncomenda = (props) => {
                                 style: {fontSize: '1.3rem'},
                             }}
                         />
-                    </Grid2>
-                    <Grid2>
+                    </Grid21>
+                    <Grid21>
                         <TextField
                             value={formData.complemento_entrega}
                             onChange={e => handleChange(e)}
@@ -195,7 +259,7 @@ const CadastrarEncomenda = (props) => {
                                 style: {fontSize: '1.3rem'},
                             }}
                         />
-                    </Grid2>
+                    </Grid21>
                     <Grid3>
                         <TextField
                             value={formData.cidade_entrega}
@@ -249,7 +313,7 @@ const CadastrarEncomenda = (props) => {
                             }}
                         />
                     </Grid3>
-                    <Grid2>
+                    <Grid21>
                         <TextField
                             value={formData.logradouro_coleta}
                             onChange={e => handleChange(e)}
@@ -285,8 +349,8 @@ const CadastrarEncomenda = (props) => {
                                 style: {fontSize: '1.3rem'},
                             }}
                         />
-                    </Grid2>
-                    <Grid2>
+                    </Grid21>
+                    <Grid21>
                         <TextField
                             value={formData.complemento_coleta}
                             onChange={e => handleChange(e)}
@@ -321,7 +385,7 @@ const CadastrarEncomenda = (props) => {
                                 style: {fontSize: '1.3rem'},
                             }}
                         />
-                    </Grid2>
+                    </Grid21>
                     <Grid3>
                         <TextField
                             value={formData.cidade_coleta}
@@ -456,19 +520,35 @@ const CadastrarEncomenda = (props) => {
                     <Button
                         variant="contained"
                         type={"submit"}
-                        onClick={() => props.close()}
-                        margin={"normal"}
-                        style={{backgroundColor: "red"}}
-                    >Cancelar</Button>
-                    <Button
-                        variant="contained"
-                        type={"submit"}
                         onClick={onsubmit}
                         margin={"normal"}
-                    >Cadastrar</Button>
+                    >Realizar Simulação</Button>
                 </Buttons>
             </Form>
-        </>
+            { erro ? 
+                 <TittleCards>
+                    {erro}
+                 </TittleCards>
+                    :
+                    valores && 
+                        <div>
+                            <TittleCards>
+                            A encomenda será entregue as {horario.horarioEntrega_HHII}
+                            </TittleCards>
+                            <Cards>
+                                { valores.map((valor, indice) => (
+                                    <ButtonCard onClick={() => submitSimulator(indice)}>
+                                        <CardVeiculos
+                                            key={indice}
+                                            id={indice}
+                                            value={valor}
+                                        />
+                                    </ButtonCard>
+                                ))}
+                            </Cards>
+                        </div>
+            }
+        </Container>
     );
 }
 
