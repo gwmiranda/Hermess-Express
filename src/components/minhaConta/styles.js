@@ -1,25 +1,39 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 3fr;
     margin: 25px auto;
-    width: 80%;
-    border: 2.5px solid gray;
+    width: 90%;
+    border: 2.5px solid transparent;
     border-radius: 25px;
-    padding: 25px;
+    overflow:hidden;
+`
+export const TittleContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    background-color: black;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 15px;
+`
+
+export const ContainerGrid = styled.div`
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
 `
 
 export const ContainerPhoto = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    margin: 0 auto;
+    margin: 10px auto 0;
 `
 
 export const Photo = styled.div`
-    width: 80%;
-    border-radius: 50%;
+    width: 70%;
+    border-radius: 20%;
     position: relative;
     border: 2.5px solid gray;
 
@@ -34,17 +48,6 @@ export const Photo = styled.div`
 `
 
 export const ContainerData = styled.div``
-
-export const TittleContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    padding: 8px 0;
-    font-size: 1.8rem;
-    font-weight: bold;
-`
 
 export const ContainerDataGrid2 = styled.div`
     display: grid;

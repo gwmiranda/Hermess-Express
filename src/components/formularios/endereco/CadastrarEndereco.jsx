@@ -44,23 +44,6 @@ const CadastrarUsuario = (props) => {
                 <FormComponents>
                     <Grid21>
                         <TextField
-                            value={formData.descricao}
-                            onChange={e => handleChange(e)}
-                            name="descricao"
-                            label="Descrição"
-                            margin={"normal"}
-                            fullWidth
-                            InputLabelProps={{ 
-                                shrink: true,
-                                style: {
-                                    fontSize: "1.5rem"
-                                }
-                            }}
-                            InputProps={{
-                                style: {fontSize: '1.3rem'},
-                            }}
-                        />
-                        <TextField
                             value={formData.logradouro}
                             onChange={e => handleChange(e)}
                             name="logradouro"
@@ -77,14 +60,31 @@ const CadastrarUsuario = (props) => {
                                 style: {fontSize: '1.3rem'},
                             }}
                         />
-                    </Grid21>
-                    <Grid2>
-                        <TextField
+                         <TextField
                             value={formData.numero}
                             onChange={e => handleChange(e)}
                             name="numero"
                             label="numero"
                             type={"number"}
+                            margin={"normal"}
+                            fullWidth
+                            InputLabelProps={{ 
+                                shrink: true,
+                                style: {
+                                    fontSize: "1.5rem"
+                                }
+                            }}
+                            InputProps={{
+                                style: {fontSize: '1.3rem'},
+                            }}
+                        />
+                    </Grid21>
+                    <Grid2>
+                        <TextField
+                            value={formData.descricao}
+                            onChange={e => handleChange(e)}
+                            name="descricao"
+                            label="Descrição"
                             margin={"normal"}
                             fullWidth
                             InputLabelProps={{ 

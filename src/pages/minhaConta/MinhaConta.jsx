@@ -23,19 +23,13 @@ function MinhaConta() {
 
     const [userState, setUserState] = useState();
 
-    const [openRegisterEndereco, setOpenRegisterEndereco] = useState(false);
-    const [openEditEndereco, setOpenEditEndereco] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openSenhaEdit, setOpenSenhaEdit] = useState(false);
 
-    const handleOpenRegisterEndereco = () => setOpenRegisterEndereco(true);
-    const handleOpenEditEndereco = () => setOpenEditEndereco(true);
     const handleOpenEdit = () => setOpenEdit(true);
     const handleOpenSenhaEdit = () => setOpenSenhaEdit(true);
 
     const handleClose = () => {
-        setOpenRegisterEndereco(false)
-        setOpenEditEndereco(false)
         setOpenEdit(false)
         setOpenSenhaEdit(false)
     };
@@ -77,14 +71,14 @@ function MinhaConta() {
                 </Modal>
             </div>
             <div>
-            <MinhaContaComponent />
+                <MinhaContaComponent />
             </div>
             <div className={"title"}>
                 <h1 >Meus Endereços</h1>
             </div>
             <div>
                 <MeusEnderecos>
-                    
+
                 </MeusEnderecos>
             </div>
         </div>
