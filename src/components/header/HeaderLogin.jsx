@@ -27,13 +27,11 @@ const HeaderLogin = () => {
     };
 
     const onSumbitRegister = (e, formSate) => {
-        console.log(formSate)
         registerRequest(formSate)
         e.preventDefault()
     }
 
     const onSumbitLogin = (e, formSate) => {
-        console.log(formSate)
         loginRequest(formSate)
         e.preventDefault()
     }
