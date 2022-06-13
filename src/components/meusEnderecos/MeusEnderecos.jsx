@@ -39,7 +39,7 @@ const MeusEnderecos = () => {
     const handleOpenRemove = (id) => {
         console.log(id)
         setDeleteEndereco(id)
-        // setOpenRemove(true)
+        setOpenRemove(true)
     };
 
     const handleClose = () => {
@@ -55,7 +55,6 @@ const MeusEnderecos = () => {
           })
           .catch((error) => {
               console.log(error.response);
-              alert(error);
           })
     }
 
@@ -71,19 +70,17 @@ const MeusEnderecos = () => {
             })
             .catch((error) => {
                 console.log(error.response);
-                alert(error);
             })
     }
 
-    const requestRemoveEndereco = async () => {
-        return axios.delete(`/address/delete/${deleteEndereco}`)
+    const requestRemoveEndereco = async (id) => {
+        return axios.delete(`/address/delete/${id}`)
             .then((res) => {
                 handleClose()
                 registerRequest()
             })
             .catch((error) => {
                 console.log(error.response);
-                alert(error);
             })
     }
 
@@ -95,7 +92,6 @@ const MeusEnderecos = () => {
             })
             .catch((error) => {
                 console.log(error.response);
-                alert(error);
             })
     }
 
@@ -122,7 +118,7 @@ const MeusEnderecos = () => {
             />
         </Modal>
 
-        <Modal
+        {/* <Modal
             open={openRemove}
             onClose={handleClose}
         > 
@@ -131,7 +127,7 @@ const MeusEnderecos = () => {
                 descricao = "Deseja confirmar a exclusão desse endereco?"
                 onSubmit = { requestRemoveEndereco }
             />
-        </Modal>
+        </Modal> */}
 
         <Table>
           <thead>
@@ -178,7 +174,8 @@ const MeusEnderecos = () => {
                     </Button>
                     <Button 
                       color='warning' 
-                      onClick={() => handleOpenRemove(endereco.id)}
+                      // onClick={() => handleOpenRemove(endereco.id)}
+                      onClick={() => requestRemoveEndereco(endereco.id)}
                       variant="contained"
                       style={{backgroundColor: "red", margin: "2px"}}
                       startIcon={<DeleteIcon />}>
