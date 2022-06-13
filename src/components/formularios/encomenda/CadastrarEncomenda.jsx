@@ -16,7 +16,7 @@ const CadastrarEncomenda = (props) => {
     console.log(state)
 
     const [stateEnvio, setStateEnvio] = useState({})
-    const [valores, setValores] = useState([]);
+    const [valores, setValores] = useState();
     const [erro, setErro] = useState([]);
     const [horario, setHorario] = useState([]);
     const [formData, setFormData] = useState({
@@ -83,7 +83,7 @@ const CadastrarEncomenda = (props) => {
                 origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.estado_coleta+","+formData.cep_coleta,
                 destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.estado_entrega+","+formData.cep_entrega,
                 data_agendada: formData.data_agendada,
-                hora_agendada: formData.hora_agendada,
+                horario_agendado: formData.hora_agendada,
                 peso: formData.peso,
                 altura: formData.altura,
                 largura: formData.largura,
@@ -113,7 +113,7 @@ const CadastrarEncomenda = (props) => {
                 origem: formData.logradouro_coleta+","+formData.numero_coleta+","+formData.bairro_coleta+","+formData.cidade_coleta+","+formData.estado_coleta+","+formData.cep_coleta,
                 destino: formData.logradouro_entrega+","+formData.numero_entrega+","+formData.bairro_entrega+","+formData.cidade_entrega+","+formData.estado_entrega+","+formData.cep_entrega,
                 data_agendada: formData.data_agendada,
-                hora_agendada: formData.hora_agendada,
+                horario_agendado: formData.hora_agendada,
                 peso: formData.peso,
                 altura: formData.altura,
                 largura: formData.largura,
@@ -525,28 +525,28 @@ const CadastrarEncomenda = (props) => {
                     >Realizar Simulação</Button>
                 </Buttons>
             </Form>
-            { erro ? 
+            { erro &&
                  <TittleCards>
                     {erro}
                  </TittleCards>
-                    :
-                    valores && 
-                        <div>
-                            <TittleCards>
-                            A encomenda será entregue as {horario.horarioEntrega_HHII}
-                            </TittleCards>
-                            <Cards>
-                                { valores.map((valor, indice) => (
-                                    <ButtonCard onClick={() => submitSimulator(indice)}>
-                                        <CardVeiculos
-                                            key={indice}
-                                            id={indice}
-                                            value={valor}
-                                        />
-                                    </ButtonCard>
-                                ))}
-                            </Cards>
-                        </div>
+            }
+            {valores && 
+                <div>
+                    <TittleCards>
+                    A encomenda será entregue as {horario.horarioEntrega_HHII}
+                    </TittleCards>
+                    <Cards>
+                        { valores.map((valor, indice) => (
+                            <ButtonCard onClick={() => submitSimulator(indice)}>
+                                <CardVeiculos
+                                    key={indice}
+                                    id={indice}
+                                    value={valor}
+                                />
+                            </ButtonCard>
+                        ))}
+                    </Cards>
+                </div>
             }
         </Container>
     );

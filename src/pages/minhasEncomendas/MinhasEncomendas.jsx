@@ -3,6 +3,7 @@ import Menu from "../../components/menuLateral/Menu";
 import {useContext, useEffect, useState} from "react";
 import DataContext from "../../data/DataContext";
 import axios from "../../axios";
+import CardEncomendas from '../../components/cards/encomendas/CardEncomendas';
 
 function MinhasEncomendas() {
 
@@ -31,7 +32,20 @@ function MinhasEncomendas() {
             <div className='Teste'>
                 <h1>Minhas Encomendas</h1>
             </div>
-            <table>
+
+            {encomendas.map((enc) => (
+                <CardEncomendas 
+                    id={enc.id}
+                    token={enc.token}
+                    status={enc.status}
+                    veiculo={enc.id_tipo_veiculo}
+                    coleta={`${enc.logradouro_coleta}, ${enc.numero_coleta}, ${enc.bairro_coleta}, ${enc.cidade_coleta}, ${enc.estado_coleta}, ${enc.cep_coleta}`}
+                    entrega={`${enc.logradouro_entrega}, ${enc.numero_entrega}, ${enc.bairro_entrega}, ${enc.cidade_entrega}, ${enc.estado_entrega}, ${enc.cep_entrega}`}
+                    valor={enc.valor_entrega}
+                />
+            ))}
+
+            {/* <table>
                 <thead>
                 <td>ID</td>
                 <td>Logradouro - Coleta</td>
@@ -69,7 +83,7 @@ function MinhasEncomendas() {
                         <td>{enc.valor_entrega}</td>
                         </tbody>
                     ))}
-            </table>
+            </table> */}
         </>
     );
 }
