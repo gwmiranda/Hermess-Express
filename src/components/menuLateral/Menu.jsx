@@ -30,7 +30,7 @@ const Menu = () => {
   const showSlideBar = () => {
     setSidebar(!sidebar);
   }
-    console.log(state)
+
   return (
     <>
       <Nav>
@@ -93,62 +93,123 @@ const Menu = () => {
                             onClick={() => showSlideBar()}
                         />
                     </NavIcon>
-                    <SubMenu
-                        url={"/MinhaConta"}
-                        icone={
-                            <PersonIcon
-                                style={{
-                                    fontSize: 60,
-                                    color: '#fff',
-                                }}
-                            />}
-                        descricao={"Perfil"}
-                    />
-                    <SubMenu
-                        url={"/MinhasEncomendas"}
-                        icone={
-                            <BusinessCenterIcon
-                                style={{
-                                    fontSize: 60,
-                                    color: '#fff',
-                                }}
-                            />}
-                        descricao={"Encomendas"}
-                    />
-                    <SubMenu
-                        url={"/DashBoard"}
-                        icone={
-                            <EqualizerIcon
-                                style={{
-                                    fontSize: 60,
-                                    color: '#fff',
-                                }}
-                            />}
-                        descricao={"DashBoard"}
-                    />
-                    <SubMenu
-                        url={"/ManterEmpresa"}
-                        icone={
-                            <StoreIcon
-                                style={{
-                                    fontSize: 60,
-                                    color: '#fff',
-                                }}
-                            />}
-                        descricao={"Empresas"}
-                    />
                     {state.id_permissao == 1 ? (
-                        <SubMenu
-                            url={"/Veiculos"}
-                            icone={
-                                <LocalShippingIcon
-                                    style={{
-                                        fontSize: 60,
-                                        color: '#fff',
-                                    }}
-                                />}
-                            descricao={"Veiculos"}
-                        />
+                        <>
+                            <SubMenu
+                                url={"/MinhaConta"}
+                                icone={
+                                    <PersonIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"Perfil"}
+                            />
+                            <SubMenu
+                                url={"/MinhasEncomendas"}
+                                icone={
+                                    <BusinessCenterIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"Encomendas"}
+                            />
+                            <SubMenu
+                                url={"/DashBoard"}
+                                icone={
+                                    <EqualizerIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"DashBoard"}
+                            />
+                            <SubMenu
+                                url={"/ManterEmpresa"}
+                                icone={
+                                    <StoreIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"Empresas"}
+                            />
+                            <SubMenu
+                                url={"/Veiculos"}
+                                icone={
+                                    <LocalShippingIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"Veiculos"}
+                            />
+                        </>
+                    ) : (<></>)}
+                    {state.id_permissao == 2 ? (
+                        <>
+                            <SubMenu
+                                url={"/MinhaConta"}
+                                icone={
+                                    <PersonIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"Perfil"}
+                            />
+                            <SubMenu
+                                url={"/MinhasEncomendasAdm"}
+                                icone={
+                                    <BusinessCenterIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"Encomendas"}
+                            />
+                            <SubMenu
+                                url={"/DashBoard"}
+                                icone={
+                                    <EqualizerIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"DashBoard"}
+                            />
+                            <SubMenu
+                                url={"/ManterEmpresa"}
+                                icone={
+                                    <StoreIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"Empresas"}
+                            />
+                            <SubMenu
+                                url={"/Veiculos"}
+                                icone={
+                                    <LocalShippingIcon
+                                        style={{
+                                            fontSize: 60,
+                                            color: '#fff',
+                                        }}
+                                    />}
+                                descricao={"Veiculos"}
+                            />
+                        </>
                     ) : (<></>)}
                 </SlideBarWrap>
             </SlideBarNav>

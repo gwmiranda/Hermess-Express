@@ -5,7 +5,7 @@ import DataContext from "../../data/DataContext";
 import axios from "../../axios";
 import CardEncomendas from '../../components/cards/encomendas/CardEncomendas';
 
-function MinhasEncomendas() {
+function MinhasEncomendasAdm() {
 
     const {state, setState} = useContext(DataContext)
     const [encomendas, setEncomendas] = useState([])
@@ -15,7 +15,7 @@ function MinhasEncomendas() {
     }, [])
 
     const responseListaEncomendas = async () => {
-        return axios.get(`/package/getByUserId/${state.id}`)
+        return axios.get(`/package/getAll`)
             .then((res) => {
                 console.log(res.data.data.encomenda)
                 setEncomendas(res.data.data.encomenda)
@@ -30,11 +30,11 @@ function MinhasEncomendas() {
         <>
             <Menu/>
             <div className='Teste'>
-                <h1>Minhas Encomendas</h1>
+                <h1>Todas Encomendas</h1>
             </div>
 
             {encomendas.map((enc) => (
-                <CardEncomendas 
+                <CardEncomendas
                     id={enc.id}
                     token={enc.token}
                     status={enc.status}
@@ -48,4 +48,4 @@ function MinhasEncomendas() {
     );
 }
 
-export default MinhasEncomendas;
+export default MinhasEncomendasAdm;

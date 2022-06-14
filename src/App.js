@@ -12,6 +12,7 @@ import Rastreio from './pages/rastreio/Rastreio';
 import Simulacao from './pages/simulacao/Simulacao';
 import DataContext, {data} from './data/DataContext';
 import AcompanharEnvio from "./pages/acompanahrEnvio/AcompanharEnvio";
+import MinhasEncomendasAdm from "./pages/minhasEncomendas/MinhasEncomendasAdm";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/ManterEmpresa" element={<ManterEmpresa />} />
                     <Route path="/MinhaConta" element={<MinhaConta />} />
                     <Route path="/MinhasEncomendas" element={<MinhasEncomendas />} />
+                    <Route path="/MinhasEncomendasAdm" element={<MinhasEncomendasAdm />} />
                     <Route path="/Veiculos" element={<Veiculos />} />
                     <Route path="/Rastreio" element={<Rastreio />} />
                     <Route path="/Simulacao" element={<Simulacao />} />
