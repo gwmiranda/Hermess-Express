@@ -50,7 +50,7 @@ const DashBoard = () => {
     const response = async () => {
         
         if (state.id_permissao == 2) {
-            console.log('pinto');
+            console.log('adm');
             return axios.get(`/package/getValuesGraficos`)
             .then((res) => {
                 setDataPizza([
@@ -75,7 +75,7 @@ const DashBoard = () => {
                 console.log(error.response);
             })
         } else {
-            console.log('cu');
+            console.log('user');
             return axios.get(`/package/getValuesGraficosUser/${state.id}`)
             .then((res) => {
                 setDataPizza([
