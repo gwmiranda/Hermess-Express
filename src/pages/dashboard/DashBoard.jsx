@@ -47,6 +47,18 @@ const DashBoard = () => {
         km: '' 
     })
 
+    const [dataLog, setDataLog] = useState()
+
+    const responseLog = async () => {
+        return axios.get(`/log/graficos`)
+        .then((res) => {
+            setDataLog(res.data.data);
+        })
+        .catch((error) => {
+            console.log(error.response);
+        })
+    }
+
     const response = async () => {
         
         if (state.id_permissao == 2) {
@@ -104,6 +116,10 @@ const DashBoard = () => {
 
     useEffect(() => {
         response();
+
+        if (state.id_permissao == 2){
+            responseLog();
+        }
     }, [])
 
   return (
@@ -113,6 +129,22 @@ const DashBoard = () => {
             DashBoard
         </Tittle>
         <Container>
+            {dataLog && (
+                 <Grid3>
+                 <Card>
+                     <TittleCard>Indisponibilidade Veiculo:</TittleCard>
+                     <ContentCard>{dataLog.Periodo}</ContentCard>
+                 </Card>
+                 <Card>
+                     <TittleCard>Simulações realizadas:</TittleCard>
+                     <ContentCard>{dataLog.Solicitacoes}</ContentCard>
+                 </Card>
+                 <Card>
+                     <TittleCard>Indisponibilidade carga:</TittleCard>
+                     <ContentCard>{dataLog.Tamanho}</ContentCard>
+                 </Card>
+             </Grid3>
+            )}
             <Grid3>
                 <Card>
                     <TittleCard>Custo total:</TittleCard>
