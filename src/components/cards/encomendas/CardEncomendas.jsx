@@ -54,7 +54,7 @@ const CardEncomendas = (props) => {
         <div>
             <ContainerTittle>
                 <Tittle style={{justifyContent: 'start'}}>
-                    <span>{props.id}</span>
+                    <span>{props.status}</span>
                 </Tittle>
                 <Tittle>
                     <span>{props.token}</span>
